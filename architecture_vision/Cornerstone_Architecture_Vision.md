@@ -69,9 +69,10 @@ This architecture vision doesn’t get into which standards or preferred distrib
 
 ## Current
 
-The USEEIO team and the CEDA team both bring their own collection of repositories, tools, and data servers to Cornerstone. In terms of their function within the EEIO pipeline, they are most easily divided into code for sector attribution (or GHG allocation), IO model building, and downstream consumption.
+The USEEIO team and the CEDA team both bring their own collection of repositories, tools, and data servers to Cornerstone. In terms of their function within the EEIO pipeline, they are most easily divided into code for sector attribution (or GHG allocation), IO model building, and downstream consumption (Figure 1).
 
 ![A diagram of the current organization of CEDA and USEEIO code.](current_arch.png)
+Figure 1. Current technical architecture of CEDA (top) and USEEIO (bottom).
 
 * For CEDA, the CEDA USA allocation and IO portions live in the same repository and share the same sets of utilities, development environment management, etc.
 
@@ -125,13 +126,15 @@ It would be possible but difficult to execute on this across multiple repositori
 
 ## **Mapping current architecture to future architecture**
 
-We can first map the extract, transform, and publish buckets into the high-level jobs that USEEIO/CEDA code does today: 
+We can first map the extract, transform, and publish buckets into the high-level jobs that USEEIO/CEDA code does today (Figure 2). 
 
 ![High-level code organization for the ETL codebase.](etl.png)
+Figure 2. High-level organization of Cornerstone’s future architecture.
 
-Digging a level deeper, we can then categorize existing code into one of these three buckets or the `Shared platform utilities` bucket. Future code we’d want to add as Cornerstone expands can also be easily categorized.
+Digging a level deeper, we can then categorize existing code into one of these three buckets or the `Shared platform utilities` bucket (Figure 3). Future code we’d want to add as Cornerstone expands can also be easily categorized.
 
 ![Diagram of Cornerstone's ETL vision, organizing current and future modules into the extract, transform, load steps.](future_arch.png)
+Figure 3. Cornerstone’s future architecture with current and future modules organized into the extract, transform, load steps.
 
 Most notably:
 
@@ -145,9 +148,10 @@ Most notably:
 
 * Future Cornerstone data assets easily fall into extract, transform, and publish steps as well.
 
-### For how this translates into folder structure, here is what the monorepo called “bedrock” could look like:
+### For how this translates into folder structure, Figure 4 shows how the files in the monorepo called “bedrock” could be structured.
 
 ![Example file structure of future codebase.](file_structure.png)
+Figure 4. Potential file structure of Cornerstone’s future monorepo.
 
 * The **extract/transform/publish stages are explicit** to mirror how data actually flows, so onboarding and debugging are easier. Domain separation lives inside each stage.
 * **orchestration of the pipeline has its own home** for easy understanding and dependency management.
