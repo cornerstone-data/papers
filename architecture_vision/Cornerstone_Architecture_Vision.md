@@ -35,9 +35,9 @@ The key points of this vision are:
 
 2. Core Cornerstone code should be stored in a monorepo, allowing easy sharing of utilities, tools, standards, and data.
 
-3. We should think of our EEIO (and future non-EEIO) data development as building an [ETL](https://aws.amazon.com/what-is/etl/), with clear code and workflow boundaries of: extracting data, transforming it (with the latest methodologies), and loading/publishing it.
+3. We should think of our EEIO (and future non-EEIO) data development as building an [ETL](https://aws.amazon.com/what-is/etl/), with clear code and workflow boundaries of: extracting data, transforming it (with the latest methodologies), and loading/publishing it.[^fn]
 
-   1. This analogy isn’t perfect, because we are not consolidating data into a single warehouse for business analytics, but is a useful framework for organizing and evolving our code to accelerate our work.
+[^fn]: This analogy isn’t perfect, because we are not consolidating data into a single warehouse for business analytics, but is a useful framework for organizing and evolving our code to accelerate our work.
 
 # Context and goals
 
