@@ -17,7 +17,7 @@ Wesley Ingwersen, [WesIngwersen](https://github.com/WesIngwersen)
 
 [Code architecture (current and future)](#code-architecture)
 
-[Mono repo vs. poly repo](#mono-repo-vs-poly-repo)
+[Monorepo vs. poly repo](#monorepo-vs-poly-repo)
 
 [Mapping current architecture -> future architecture](#mapping-current-architecture-to-future-architecture)
 
@@ -120,7 +120,7 @@ The existing EEIO code from both parties resemble immature [ETL (extract, transf
 
    4. Out-of-the-box visualization of data pipeline directed acyclic graphs (DAGs) for non-technical users to understand data flows and transformations.
 
-### **Mono repo vs. poly repo**
+### **Monorepo vs. poly repo**
 
 It would be possible but difficult to execute on this across multiple repositories, so this document’s position is that the ETL should live in **one repository**. A monorepo allows us to proliferate and enforce new patterns and tooling across the data pipeline, and is the most convenient way for Cornerstone contributors **and** external members to run the pipeline end-to-end. A monorepo ETL does not prevent us from publishing intermediate and final data artifacts for external consumption.
 
@@ -142,7 +142,7 @@ Most notably:
 
 * Consuming code such as the Supply Chain Factors, USEEIO-State, and `useeior` visualization and analysis would be considered **publish** steps.
 
-* Components of USEEIO would be split into the appropriate **extract** and **transform** (nowcasting) or **publish** steps (olca) or moved to a separate 
+* Components of USEEIO would be split into the appropriate **extract** and **transform** (nowcasting) or **publish** steps (olca) or moved to a separate repository if appropriate.
 
 * We would invest in shared platform utilities that are accessible across the monorepo.
 
