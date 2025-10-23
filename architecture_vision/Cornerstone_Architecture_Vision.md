@@ -17,7 +17,7 @@ Wesley Ingwersen, [WesIngwersen](https://github.com/WesIngwersen)
 
 [Code architecture (current and future)](#code-architecture)
 
-[Mono repo vs. poly repo](#mono-repo-vs.-poly-repo)
+[Mono repo vs. poly repo](#mono-repo-vs-poly-repo)
 
 [Mapping current architecture → future architecture](#mapping-current-architecture-→-future-architecture)
 
