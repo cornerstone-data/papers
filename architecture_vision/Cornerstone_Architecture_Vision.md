@@ -121,7 +121,7 @@ The existing EEIO code from both parties resemble immature [ETL (extract, transf
 
 ### **Mono repo vs. poly repo**
 
-It would be possible but difficult to execute on this across multiple repositories, so this document’s position is that the ETL should live in **one repository**. A monorepo allows us to proliferate and enforce new patterns and tooling across the data pipeline, and is the most convenient way for Cornerstone contributors **and** external members to run the pipeline end-to-end. A monorepo ETL does not prevent us from publishing intermediate and final data artifacts for external consumption. You can read our decision-making on [mono vs. poly repos here](https://docs.google.com/document/d/1nSbaLpn-336dW1A24WsA1U3vGMagAppjcnTsSTPWMQQ/edit?tab=t.0).
+It would be possible but difficult to execute on this across multiple repositories, so this document’s position is that the ETL should live in **one repository**. A monorepo allows us to proliferate and enforce new patterns and tooling across the data pipeline, and is the most convenient way for Cornerstone contributors **and** external members to run the pipeline end-to-end. A monorepo ETL does not prevent us from publishing intermediate and final data artifacts for external consumption.
 
 ## **Mapping current architecture to future architecture**
 
