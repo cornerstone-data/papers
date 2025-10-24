@@ -154,8 +154,8 @@ Figure 4 shows how the files in a monorepo called `bedrock` could be structured.
 ![Example file structure of future codebase.](file_structure.png)
 Figure 4. Potential file structure of Cornerstone’s future monorepo.
 
-* The **extract/transform/publish stages are explicit** to mirror how data actually flows, so onboarding and debugging are easier. Domain separation lives inside each stage.
-* **orchestration of the pipeline has its own home** for easy understanding and dependency management.
+* The *extract/transform/publish stages are explicit* to mirror how data actually flows, so onboarding and debugging are easier. Domain separation lives inside each stage.
+* *orchestration of the pipeline has its own home* for easy understanding and dependency management.
 
 
 # What this vision unlocks for the future
