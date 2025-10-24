@@ -17,7 +17,7 @@ Wesley Ingwersen, [WesIngwersen](https://github.com/WesIngwersen)
 
 [Code architecture (current and future)](#code-architecture)
 
-[Monorepo vs. poly repo](#monorepo-vs-poly-repo)
+[Monorepo vs. polyrepo](#monorepo-vs-polyrepo)
 
 [Mapping current architecture -> future architecture](#mapping-current-architecture-to-future-architecture)
 
@@ -57,7 +57,7 @@ Cornerstone's technical architecture will serve the generation of the data artif
 
 3. Non-Cornerstone members can use and modify our software tools for their own use.
 
-Note: (3) is the lowest priority because Cornerstone’s mission is first and foremost one of **open data**, as opposed to **open source code libraries.** This is reflected in the relative usage of the USEEIO/CEDA data outputs vs. code libraries. This tradeoff is reflected throughout this vision document.
+Note: (3) is the lowest priority because Cornerstone’s mission is first and foremost one of **open data**, as opposed to open source code libraries or software packages. This is reflected in the relative usage of the USEEIO/CEDA data outputs vs. code libraries. This tradeoff is reflected throughout this vision document.
 
 # Programming language choice
 
@@ -120,9 +120,9 @@ The existing EEIO code from both parties resemble immature [ETL (extract, transf
 
    4. Out-of-the-box visualization of data pipeline directed acyclic graphs (DAGs) for non-technical users to understand data flows and transformations.
 
-### **Monorepo vs. poly repo**
+### **Monorepo vs. polyrepo**
 
-It would be possible but difficult to execute on this across multiple repositories, so this document’s position is that the ETL should live in **one repository**. A monorepo allows us to proliferate and enforce new patterns and tooling across the data pipeline, and is the most convenient way for Cornerstone contributors **and** external members to run the pipeline end-to-end. A monorepo ETL does not prevent us from publishing intermediate and final data artifacts for external consumption.
+It would be possible but difficult to execute on this across multiple repositories (a polyrepo), so this document’s position is that the ETL should follow a **monorepo** approach, such that he code lives in one repository. A [monorepo](https://en.wikipedia.org/wiki/Monorepo) allows us to proliferate and enforce new patterns and tooling across the data pipeline, and is the most convenient way for Cornerstone contributors and external members to run the pipeline end-to-end. A monorepo ETL does not prevent us from publishing intermediate and final data artifacts for external consumption.
 
 ## **Mapping current architecture to future architecture**
 
@@ -148,7 +148,8 @@ Most notably:
 
 * Future Cornerstone data assets easily fall into extract, transform, and publish steps as well.
 
-### For how this translates into folder structure, Figure 4 shows how the files in the monorepo called “bedrock” could be structured.
+### Example file structure
+Figure 4 shows how the files in a monorepo called `bedrock` could be structured.
 
 ![Example file structure of future codebase.](file_structure.png)
 Figure 4. Potential file structure of Cornerstone’s future monorepo.
@@ -161,15 +162,17 @@ Figure 4. Potential file structure of Cornerstone’s future monorepo.
 
 Putting down this foundation will first and foremost accelerate Cornerstone’s development of robust, well-managed sustainability data assets. We’ll be able to run the pipelines end-to-end for fast iteration loops in development, have stronger guarantees that no data is stale, and have compounding returns whenever we make a cross-codebase tooling improvement.
 
-This vision is also exciting from a forward-looking perspective:
+This vision is also exciting from a forward-looking perspective, because it unlocks several possibilities for Cornerstone’s future:
 
-* A strong foundation of ETL tools will allow us to **quickly spin-up data development efforts beyond standard EEIO** that are mature and robust from day one.
+* **Easily develop new data assets beyond EEIO**
+
+* A strong foundation of ETL tools will allow us to quickly spin-up data development efforts beyond standard EEIO that are mature and robust from day one.
 
   * E.g., If we develop a process-based LCA dataset, we’ll have the same out-of-the-box helpers for data extraction, monitoring workflows, kicking off pipelines, versioning, etc.
 
   * Future data assets, such as hybrid EEIO and process-based LCAs may share sources of primary data. We can easily share extraction functions to do so (rather than sharing a data store, which risks data staleness).
 
-* **Easy to onboard technical contributors**
+* **Easily onboard technical contributors**
 
   * With the scope of changes limited to domain-specific extract, transform, and load files in a single repository, contributions from non-core members become easier to implement and easier to review.
 
@@ -177,7 +180,7 @@ This vision is also exciting from a forward-looking perspective:
 
     * E.g., Our World in Data has fantastic documentation and tooling for adding your own dataset. Part of why this is so easy is because of their ETL structure: [https://docs.owid.io/projects/etl/guides/data-work/add-data/](https://docs.owid.io/projects/etl/guides/data-work/add-data/)
 
-* **Easy for non-technical individuals to understand how our derivation works**
+* **Easily show non-technical individuals how our models are derived**
 
   * Non-technical contributors can use code dependency visualizers such as [Basic](https://pycallgraph.readthedocs.io/en/master/examples/basic.html#generated-image) to understand the data flows and dependencies visually. This enables them to engage with our work and verify their understanding in ways USEEIO and CEDA don’t offer today. Based on demand, we can evolve this into something more mature (for inspiration, see the [Dagster web UI docs (click on the `Global asset lineage` tab)](https://docs.dagster.io/guides/operate/webserver?#assets)).
 
