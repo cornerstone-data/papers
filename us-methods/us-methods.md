@@ -31,6 +31,7 @@ The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
 | RCRA Online                                             | Census Bureau |  | 2012 |
 
 The benchmark Make and Use matrices from the BEA, provided at 5 year intervals, were the fundamental US IOT inputs to USEEIO and CEDA models.
+The 2017 tables are the most recent official release.
 These tables are prepared in producer and purchaser price, as well as "before redefinitions" (BR) and "After Redefinitions" (AR).
 We use the producer price version as was done previously both for USEEIO and CEDA. 
 The purchaser price version provide less transparency in the input requirements because for each value in the Use table for an industries' use of a commodity includes not just the value of the commodity used but also the value of added wholesale, retail and transportation costs.
@@ -57,19 +58,54 @@ All the uses of these tables are described below.
 
 ## Selected IOT Schema
 A complete list of commodities, industries, and final use types is given in the Appendix. 
+For all selected industries, value added and final demand components we use the BEA's code and name. 
+For all selected commodities we use the BEA code but assign a commodity-like name to differentiate them from industries as done in USEEIO v2.
 
 We use the vast majority of the industries and commodities as given in the 2017 benchmark Make and Use tables as is.
 However there are some cases in which industries or commodities are removed, combined with others, or split into multiple. 
 Those cases are described here. 
 
-### Combination of industries
+### Combination of Industries
+Government industries that produce that same commodities as private industries are aggregated.
+_Federal electric utilities_ (BEA S00101) and _State and local government electric utilities_ (BEA S00202) are included in _Electric power generation, transmission, and distribution_ because all produce _Electricity_. 
+_State and local government passenger transit_ (BEA S00201) is included in _Transit and ground passenger transportation_ (BEA 485000).
+These aggregates are represented with the private industry name and code because this is also the code for the primary product they are producing. 
+ See Discussions [#7](https://github.com/cornerstone-data/methods/discussions/7) and [#44](https://github.com/cornerstone-data/methods/discussions/44).
 
 
+### Removal of Commodities
 
+Some items are present in the Make and Use tables as commodities only for accounting/balancing purposes and do not represent tangible commodities. 
+These include:
+- _Customs duties_ (BEA 4200ID)
+- _Noncomparable imports_ (BEA S00300)
+- _Rest of the world adjustment_ (BEA S00900)
+
+_Customs duties_ are tariffs or taxes collected on imports. BEA defines _Rest of the world adjustment_ as "values for exports and imports that have offsetting adjustments to personal consumption expenditures (PCE) and government". _Noncomparable imports_ are "(1) Services that are produced and consumed abroad, such as airport expenditures by U.S. airlines in foreign countries; (2) services imports that are unique, such as payments for the rights to patents, copyrights, or industrial processes; and (3) services imports that cannot be identified by type, such as payments by U.S. companies to their foreign affiliates for an undefined “basket” of services". [BEA IO Manual](https://www.bea.gov/resources/methodologies/concepts-methods-io-accounts).
+
+These commodities are removed from the model as they are not intended to be use to characterize environmental impacts. See discussion [#1](https://github.com/cornerstone-data/methods/discussions/1). Removal details are specified below.
+
+The commodity _Scrap_ (BEA S00401) represents discarded materials but is not specific to any material or product and not determined to be useful for environmental characterization. See discussion [#5](https://github.com/cornerstone-data/methods/discussions/5). It is removed as described below.  
+
+### Addition of Industries and Commodities - Waste Sector
+
+The _Waste and Remediation_ (BEA 562000) industry and associated commodity is removed and and replaced with more specific industries and commodities. 
+For each new industry, new commodity is created. 
+
+| Industry/Commodity Name                           |  USEEIO Code |
+|---------------------------------------------------|-------------|
+| Solid waste collection                            | 562111      |
+| Hazardous waste collection treatment and disposal | 562HAZ      |
+| Solid waste landfilling                           | 562212      |
+| Solid waste combustors and incinerators           | 562213      |
+| Remediation services                              | 562910      |
+| Material separation/recovery facilities           | 562920      |
+| Other waste collection and treatment services     | 562OTH      |
+
+These are the same waste commodities and industries present in [USEEIO v2.0](https://www.nature.com/articles/s41597-022-01293-7).
+This results in a net addition of 6 industries and 6 commodities. See discussion [#8](https://github.com/cornerstone-data/methods/discussions/8).
 
 ## Treatment of Economic Data and IOT Construction
-
-
 
 
 # GHG Emissions Model and Indicators
