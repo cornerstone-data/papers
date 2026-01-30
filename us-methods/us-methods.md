@@ -92,6 +92,8 @@ The commodity _Scrap_ (BEA S00401) represents discarded materials but is not spe
 The _Waste and Remediation_ (BEA 562000) industry and associated commodity is removed and and replaced with more specific industries and commodities. 
 For each new industry, new commodity is created. 
 
+### Table 2. Waste Sectors
+
 | Industry/Commodity Name                           |  USEEIO Code |
 |---------------------------------------------------|-------------|
 | Solid waste collection                            | 562111      |
@@ -107,6 +109,67 @@ This results in a net addition of 6 industries and 6 commodities. See discussion
 
 ## Treatment of Economic Data and IOT Construction
 
+We use matrix algebra to describe the treatment of the economic data to construct the US IOT. 
+Variables are defined in Table 3. 
+
+### Table 3. Variables.
+
+| Variable        | Contents                                                                               | Shape                 |
+|-----------------|----------------------------------------------------------------------------------------|-----------------------|
+| **A**           | direct requirements matrix                                                             | commodity x commodity |
+| **A_d**         | domestic direct requirements matrix                                                    | commodity x commodity |
+| **B**           | direct environmental flows per commodity output matrix                                 | flow x commodity      |
+| **C**           | characterization factor matrix                                                         | indicator x flow      |
+| c               | subscript for commodity                                                                |                       |    
+| **i**           | vector of 1s                                                                           | varies                |
+| **L**           | Leontief matrix                                                                        | commodity x commodity |
+| **L_d**         | Leontief matrix only including total domestic requirements                             | commodity x commodity |
+| **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
+| **q**           | commodity output vector                                                                | commodities           |
+| **U**           | Use table industry transactions | commodity x industry |
+| **V**           | Make table                                                                             | industry x commodity |
+| **x**           | total final demand vector                                                              | commodities           |
+| **y**           | total final demand vector                                                              | commodities           |
+| ^               | symbol that indicates diagonalized form (matrix form) of a vector                      |                       |
+| -               | bar over to represent a variable before transformation into CS conventions         |                       |
+| $\circ$         | open dot for a Hadamard product (elementwise) of two matrices or vectors               |                       |
+
+We start with the Make table from BEA, $\bar{V}$, and the Use table, $\bar{U}$.  
+To combine the government industries we use an industry x industry correspondence matrices, $O_i$, and a commodity by commodity correspondence matrix, $O_c$, to aggregate the sector in the Make (the rows) and Use. 
+In these correspondence matrices the CS sectors are on the rows and the BEA sectors on the columns. 
+This removes the rows and columns of special accounting industries and commodities from the matrices, and aggregates the government utilities. 
+Note that this does not account for the additions of the waste sectors.
+
+$$ V = O_i \bar{V} O_c' $$
+
+$$ U = O_c \bar{U} O_i' $$
+
+The total commodity and industry output, $q$ and $x$, is derived from the Make table, where $q$ is the columns sums and $x$ is the row sums.
+Although the commodity, _Scrap_, is not part of the final sector schema, it does need to be included in order to adjust the IOT.  
+The scrap amounts produced by each industry, $r$, must be added to get the industry output.   
+
+$$ q = iV $$
+
+$$ x = Vi + r $$
+
+We calculate the non-scrap portion of industry output, $nsr$. 
+$$ nsr = (x-r){x}^-1 $$
+
+This ratio is used to modify the commodity output normalized form of the Make matrix, also knows as the market shares matrix, to reflect an increased input of non-scrap commodities needed to fill the gap left from scrap removal in industry output. This new matrix is $W$.
+
+$$ W = \hat{nsr}^{-1} V\hat{q}^{-1} $$  
+
+The Use table is normalized by industry output and then post-multiplied by $W$ to get $A$ in commodity by commodity format.
+This method for creating the $A$ matrix is based on the _industry- technology_ assumption, wherein the manufacture of the primary and any secondary commodities by an industry uses the same production requirements, and the commodity requirements are based therefore on the mix of industries that produce that commodity, weighted by their relative share of total commodity output. See [Input Output Analysis by R. Miller and P. Blair 2022](https://doi.org/10.1017/9781108676212).
+
+$$ A = U\hat{x}^{-1}W $$
+
+$L$, the Leontief inverse, or the total requirements matrix, is obtained from $A$.
+$L$ is in commodity x commodity form and represents the total upstream inputs of commodities (rows) used to make a commodity (columns).
+
+$$
+L = (I - A)^{-1}
+$$ {#eq:L}
 
 # GHG Emissions Model and Indicators
 
