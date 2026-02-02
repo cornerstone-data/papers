@@ -171,6 +171,64 @@ $$
 L = (I - A)^{-1}
 $$ {#eq:L}
 
+We also prepare domestic versions of the $A$ matrix.  This starts with using a version of the industry transactions in the Use table only with uses of domestic commodities, also known as the import matrix, $U_m$. 
+This has to be conformed to the CS model schema through an aggregation matrix, then we subtracting it from from the Use matrix to estimate a domestic Use table, $U_d$, as in [@Eq:U_d].
+
+$$ U_m = O_c \bar{U_m} O_i' $$
+
+$$
+U_d = U - U_m
+$$ {#eq:U_d}
+
+Then it can be used to derive the domestic version of the direct requirements, $A_d$.
+
+$$ A_d= U_d\hat{x}^{-1}W $$
+
+We also develop two types of price adjustment factors, one to adjust for inflation, $\rho$, and one to adjust from producer price to purchaser price, $\Phi$.
+
+The factor are specific to each commodity and year. 
+
+$\rho_y$ is an inflation adjustment factor for commodities in the form of IO based year per given currency year (the columns of the matrix).
+
+$\rho$ is the ratio of the commodity gross output chain price index in IO base year, $by$, to that of year $y$.  
+
+$$
+\rho_{y} = \frac{\Pi_{by}}{\Pi_{y}}
+$$ {#eq:rho}
+
+where $\rho_{y}$ is a vector of inflation factors for every commodity.
+
+The price indices are derived from the BEA Gross Output Chain Price Index, which is a industry by year matrix, $\Pi_i$, of price indices reflecting the annual change in the price of industry gross output relative to the IO year, which is set to 100. 
+The commodity price indices are derived from $\Pi_i$ , using the $\W$ transformation matrix after $\Pi$ has been conformed to the model schema.
+
+$$ \Pi_i = O_i \bar{\Pi_i} $$
+
+$$ \Pi_i = \Pi_i W $$
+
+
+The second of price adjustment matrix is $\Phi$, which is composed of factors to convert into purchaser price. 
+Purchaser price reflects the producer's price plus sale and transportation margins [see BEA IO manual](https://www.bea.gov/resources/methodologies/concepts-methods-io-accounts).
+
+ The values in $\Phi$ are commodity-specific producer:purchaser price ratios where a value of $\Phi_{c,y}$ is a ratio of commodity output, $q$ in producer price for a given year to commodity output in purchaser price for that given year. 
+ 
+$$
+\Phi_c,y = \frac{q_{PRO,c,by}}{q_{PUR,c,y}}
+$$ {#eq:Phi}
+
+
+The origins of $\Phi$ is the Margins tables provide values for transportation, $t$, wholesale, $w$, and retail, $r$, specific to each commodity consumed by industries, households or investors. These same year margins data are used for all years, however they are price-adjusted first to calculate a total year specific margin
+
+$$
+q_{PUR,c,y} = q_cP_{c,y} + t_{c,y}P_{t,y} + w_{c,y}P_{w,y} + r_{c,y}P_{r,y}
+$$ {#eq:PRO}
+
+where $P_{m,y}$ for a margin type ($t$, $w$ or $r$) is calculated in [@Eq:Rho_m], which is the weighted average of price adjustments in commodities that make up $m$ (e.g. Truck transportation, Water transportation, Rail transportation are commodities in set $m$ for transportation).
+
+$$
+P_{m,y} = \frac{\sum_{c\in m}q_{c,y}P_{c,y}} {\sum_{c\in m}q_{c,y}}
+$$ {#eq:Rho_m}
+
+
 # GHG Emissions Model and Indicators
 
 ## Data Sources
