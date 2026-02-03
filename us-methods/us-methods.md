@@ -3,7 +3,7 @@
 
 authors, TBD
 
-This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone global EEIO model, v1.0.
+This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0.
 This methodology draws on approaches used previously in the the USEEI0 and CEDA-US models. 
 The Cornerstone team first reviewed and identified all the differences between reference USEEIO and CEDA-US models, and the systematically assessed the differences both theoretically and quantitatively, as relevant. 
 That work is captured in a discussions and related scripts found in the [cornerstone-data/methods](https://github.com/cornerstone-data/methods) repository. References to those discussions are provided herein.
@@ -15,7 +15,7 @@ The description of the methodology is split into three sections: (1) the economi
 
 Data are requiring for building the economic IOTs as well as for linking the environmental data to build the EEIO extensions.
 
-## Data Inputs on U.S. Industry
+## Data Inputs to IOTs
 The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
 
 ### Table 1. Data Sources Used in IOT Construction
@@ -32,7 +32,7 @@ The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
 
 The benchmark Make and Use matrices from the BEA, provided at 5 year intervals, were the fundamental US IOT inputs to USEEIO and CEDA models.
 The 2017 tables are the most recent official release.
-These tables are prepared in producer and purchaser price, as well as "before redefinitions" (BR) and "After Redefinitions" (AR).
+These tables are prepared in producer and purchaser price, as well as "Before redefinitions" (BR) and "After Redefinitions" (AR).
 We use the producer price version as was done previously both for USEEIO and CEDA. 
 The purchaser price version provide less transparency in the input requirements because for each value in the Use table for an industries' use of a commodity includes not just the value of the commodity used but also the value of added wholesale, retail and transportation costs.
 The producer price version is used to provide more transparency.
@@ -53,6 +53,7 @@ The result of the redefinitions are commodities with input structures that more 
 
 The BEA Gross Output by Industry is the authoritative dataset on both annual gross output and annual price index by detailed industry that most closely matches the Make and Use tables. 
 The Import Matrix (AR) is an accompanying table to the selected Use table with values for uses of imported commodities by industries and final users.
+The Margins table contain data on cost of transportation, wholesale and retail to move each commodity to each user corresponding with the benchmark Use table.
 The final three sources listed in Table 1 are used for the waste sector disaggregation.
 All the uses of these tables are described below. 
 
@@ -131,14 +132,15 @@ Variables are defined in Table 3.
 | **x**           | total final demand vector                                                              | commodities           |
 | **y**           | total final demand vector                                                              | commodities           |
 | ^               | symbol that indicates diagonalized form (matrix form) of a vector                      |                       |
+| '               | symbol that indicates the transposition of a matrix of vector                      |                       |
 | -               | bar over to represent a variable before transformation into CS conventions         |                       |
 | $\circ$         | open dot for a Hadamard product (elementwise) of two matrices or vectors               |                       |
 
-We start with the Make table from BEA, $\bar{V}$, and the Use table, $\bar{U}$.  
+We start with the Make table from BEA, $\bar{V}$, and the Use table from BEA, $\bar{U}$.  
 To combine the government industries we use an industry x industry correspondence matrices, $O_i$, and a commodity by commodity correspondence matrix, $O_c$, to aggregate the sector in the Make (the rows) and Use. 
 In these correspondence matrices the CS sectors are on the rows and the BEA sectors on the columns. 
 This removes the rows and columns of special accounting industries and commodities from the matrices, and aggregates the government utilities. 
-Note that this does not account for the additions of the waste sectors.
+Note that these correspondence matrices do not account for the additions of the waste sectors.
 
 $$ V = O_i \bar{V} O_c' $$
 
@@ -153,6 +155,7 @@ $$ q = iV $$
 $$ x = Vi + r $$
 
 We calculate the non-scrap portion of industry output, $nsr$. 
+
 $$ nsr = (x-r){x}^-1 $$
 
 This ratio is used to modify the commodity output normalized form of the Make matrix, also knows as the market shares matrix, to reflect an increased input of non-scrap commodities needed to fill the gap left from scrap removal in industry output. This new matrix is $W$.
@@ -176,9 +179,7 @@ This has to be conformed to the CS model schema through an aggregation matrix, t
 
 $$ U_m = O_c \bar{U_m} O_i' $$
 
-$$
-U_d = U - U_m
-$$ {#eq:U_d}
+$$ U_d = U - U_m $$
 
 Then it can be used to derive the domestic version of the direct requirements, $A_d$.
 
@@ -192,9 +193,7 @@ $\rho_y$ is an inflation adjustment factor for commodities in the form of IO bas
 
 $\rho$ is the ratio of the commodity gross output chain price index in IO base year, $by$, to that of year $y$.  
 
-$$
-\rho_{y} = \frac{\Pi_{by}}{\Pi_{y}}
-$$ {#eq:rho}
+$$ \rho_{y} = \frac{\Pi_{by}}{\Pi_{y}} $$
 
 where $\rho_{y}$ is a vector of inflation factors for every commodity.
 
@@ -205,28 +204,20 @@ $$ \Pi_i = O_i \bar{\Pi_i} $$
 
 $$ \Pi_i = \Pi_i W $$
 
-
 The second of price adjustment matrix is $\Phi$, which is composed of factors to convert into purchaser price. 
 Purchaser price reflects the producer's price plus sale and transportation margins [see BEA IO manual](https://www.bea.gov/resources/methodologies/concepts-methods-io-accounts).
 
  The values in $\Phi$ are commodity-specific producer:purchaser price ratios where a value of $\Phi_{c,y}$ is a ratio of commodity output, $q$ in producer price for a given year to commodity output in purchaser price for that given year. 
  
-$$
-\Phi_c,y = \frac{q_{PRO,c,by}}{q_{PUR,c,y}}
-$$ {#eq:Phi}
-
+$$ \Phi_c,y = \frac{q_{PRO,c,by}}{q_{PUR,c,y}} $$ 
 
 The origins of $\Phi$ is the Margins tables provide values for transportation, $t$, wholesale, $w$, and retail, $r$, specific to each commodity consumed by industries, households or investors. These same year margins data are used for all years, however they are price-adjusted first to calculate a total year specific margin
 
-$$
-q_{PUR,c,y} = q_cP_{c,y} + t_{c,y}P_{t,y} + w_{c,y}P_{w,y} + r_{c,y}P_{r,y}
-$$ {#eq:PRO}
+$$ q_{PUR,c,y} = q_cP_{c,y} + t_{c,y}P_{t,y} + w_{c,y}P_{w,y} + r_{c,y}P_{r,y} $$
 
 where $P_{m,y}$ for a margin type ($t$, $w$ or $r$) is calculated in [@Eq:Rho_m], which is the weighted average of price adjustments in commodities that make up $m$ (e.g. Truck transportation, Water transportation, Rail transportation are commodities in set $m$ for transportation).
 
-$$
-P_{m,y} = \frac{\sum_{c\in m}q_{c,y}P_{c,y}} {\sum_{c\in m}q_{c,y}}
-$$ {#eq:Rho_m}
+$$ P_{m,y} = \frac{\sum_{c\in m}q_{c,y}P_{c,y}} {\sum_{c\in m}q_{c,y}} $$
 
 
 # GHG Emissions Model and Indicators
@@ -241,7 +232,7 @@ Table 4 has a list of the data sources used in the emissions model.
 | GHG Inventory | EPA | [ Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks) | 2023 |
 | COA Cropland   | USDA | [Department of Agriculture Census of Agriculture](https://www.eia.gov/consumption/manufacturing/) | 2022 |
 | MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey ](https://www.eia.gov/consumption/manufacturing/) | 2018 |
-| Mineral Yearbook: Lead  | USGS | [Mineral Yearbook: Lead ](https://www.usgs.gov/centers/national-minerals-information-center/lead-statistics-and-information) | 2020 |
+| MYB: Lead  | USGS | [U.S. Geological Survey Mineral Yearbook](https://www.usgs.gov/centers/national-minerals-information-center/lead-statistics-and-information) | 2020 |
 
 The US GHG Inventory (GHGI) is an authoritative estimate of national GHG emissions and sinks for the U.S. that includes estimates of emissions by broad sectors as specific activities. 
 
@@ -253,7 +244,7 @@ Other sources are used to attribute the broader emissions to specific industries
 The Manufacturing Energy Consumption Survey (MECS) is the summary results of a national survey of energy used by manufacturers in the U.S. 
 Data used (Table 6) includes total energy consumption by industry as well as fuel use and nonfuel use of energy sources and average prices for energy. 
 The Census of Agriculture (CoA) is the most extensive national survey of agriculture and forestry. From the CoA, various data are used for area of land for general agriculture and specific crop types, both by crop name and NAICS code. The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION" , "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", ETC. as the measures available per crop type vary. 
-From the Mineral Yearbook, data on secondary (recycled) lead production is used. 
+From the Mineral Yearbook (MYB), data on secondary (recycled) lead production is used. 
 
 ### Table 5. GHG Inventory Tables Used
 No. | Name
@@ -297,8 +288,8 @@ No. | Name
 2-2 | [Energy Used as a Nonfuel (Feedstock)]  By Manufacturing Industry and Region (trillion Btu)
 3-1 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (physical units)
 3-2 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (trillion Btu)
-7.2 | [Average Prices of Purchased Energy Sources] All Collected Energy Sources By Manufacturing Industry and Region (dollars per million Btu)
-7.10 | [Expenditures for Purchased Energy (Millions of Dollars)] Purchased Electricity, Natural Gas, Steam by type of Supplier, Manufacturing, Industry, and Region
+7-2 | [Average Prices of Purchased Energy Sources] All Collected Energy Sources By Manufacturing Industry and Region (dollars per million Btu)
+7-10 | [Expenditures for Purchased Energy (Millions of Dollars)] Purchased Electricity, Natural Gas, Steam by type of Supplier, Manufacturing, Industry, and Region
 
 ## Sector Attribution Model
 
