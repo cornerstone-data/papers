@@ -28,7 +28,7 @@ The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
 | Import Matrix, After Redefinitions                         | BEA | [Bureau of Economic Analysis Industry Input-Output Accounts](https://www.bea.gov/industry/input-output-accounts-data) | 2017 |
 | Summary Statistics for  Waste Sector (EC1756BASIC)                                              | Census Bureau | [2017 Administrative and Support and Waste Management and Remediation Services (NAICS Sector 56)](https://www.census.gov/data/tables/2017/econ/economic-census/naics-sector-56.html) | 2017 |
 | Services Annual Survey (SAS)                                              | Census Bureau |  | 2017 |
-| RCRA Online                                             | Census Bureau |  | 2012 |
+| RCRA Online                                             |  EPA |  | 2012 |
 
 The benchmark Make and Use matrices from the BEA, provided at 5 year intervals, were the fundamental US IOT inputs to USEEIO and CEDA models.
 The 2017 tables are the most recent official release.
@@ -232,17 +232,30 @@ $$ {#eq:Rho_m}
 # GHG Emissions Model and Indicators
 
 ## Data Sources
+
+Table 4 has a list of the data sources used in the emissions model.
+
 ### Table 4. Data Sources Used in GHG Emission Model
 | Name                                                       | Creator | Sources | DataYears |
 |:-----------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------|:----------|
-| GHG Inventory | EPA | [ Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.bea.gov/industry/input-output-accounts-data) | 2017 |
-| Make and Use, Detail, After Redefinitions, Producer Price | BEA | [Bureau of Economic Analysis Industry Input-Output Accounts](https://www.bea.gov/industry/input-output-accounts-data) | 2017 |
+| GHG Inventory | EPA | [ Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks) | 2023 |
+| COA Cropland   | USDA | [Department of Agriculture Census of Agriculture](https://www.eia.gov/consumption/manufacturing/) | 2022 |
+| MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey ](https://www.eia.gov/consumption/manufacturing/) | 2018 |
+| Mineral Yearbook: Lead  | USGS | [Mineral Yearbook: Lead ](https://www.usgs.gov/centers/national-minerals-information-center/lead-statistics-and-information) | 2020 |
 
-| MECS Tables 2.3  and Use, Detail, After Redefinitions, Producer Price | BEA | [Bureau of Economic Analysis Industry Input-Output Accounts](https://www.bea.gov/industry/input-output-accounts-data) | 2017 |
+The US GHG Inventory (GHGI) is an authoritative estimate of national GHG emissions and sinks for the U.S. that includes estimates of emissions by broad sectors as specific activities. 
 
+The GHGI is the primary source of all GHG emissions data.
+The specific tables from which data are used are included in Table 5. 
+Data from these tables were selected because they were determined to be the most relevant to estimate emissions by detailed sector corresponding with the industry data.
+
+Other sources are used to attribute the broader emissions to specific industries when the GHGI does not provide the needed resolution. 
+The Manufacturing Energy Consumption Survey (MECS) is the summary results of a national survey of energy used by manufacturers in the U.S. 
+Data used (Table 6) includes total energy consumption by industry as well as fuel use and nonfuel use of energy sources and average prices for energy. 
+The Census of Agriculture (CoA) is the most extensive national survey of agriculture and forestry. From the CoA, various data are used for area of land for general agriculture and specific crop types, both by crop name and NAICS code. The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION" , "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", ETC. as the measures available per crop type vary. 
+From the Mineral Yearbook, data on secondary (recycled) lead production is used. 
 
 ### Table 5. GHG Inventory Tables Used
-
 No. | Name
 -- | --
 2-1 | Recent Trends in U.S. Greenhouse Gas Emissions and Sinks (MMT CO2 Eq.)
@@ -275,8 +288,17 @@ A-90 | HFC Emissions from Transportation Sources (MMT CO2 Eq.)
 3-49 | N2O Emissions from Petroleum Systems (Metric Tons CO2 Eq.)
 3-68 | N2O Emissions from Natural Gas Systems (Metric Tons CO2 Eq.)
 
-
-
+### Table 6. MECS Tables Used
+No. | Name
+-- | --
+1-2 | [Consumption of Energy for All Purposes] By Manufacturing Industry and Region (trillion Btu)
+1-5 | [Consumption of Energy for All Purposes]  By Further Classification of 'Other' Energy Sources
+2-1 | [Energy Used as a Nonfuel (Feedstock)] By Manufacturing Industry and Region (physical units)
+2-2 | [Energy Used as a Nonfuel (Feedstock)]  By Manufacturing Industry and Region (trillion Btu)
+3-1 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (physical units)
+3-2 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (trillion Btu)
+7.2 | [Average Prices of Purchased Energy Sources] All Collected Energy Sources By Manufacturing Industry and Region (dollars per million Btu)
+7.10 | [Expenditures for Purchased Energy (Millions of Dollars)] Purchased Electricity, Natural Gas, Steam by type of Supplier, Manufacturing, Industry, and Region
 
 ## Sector Attribution Model
 
