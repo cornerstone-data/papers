@@ -248,46 +248,40 @@ From the Mineral Yearbook (MYB), data on secondary (recycled) lead production is
 No. | Name
 -- | --
 2-1 | Recent Trends in U.S. Greenhouse Gas Emissions and Sinks (MMT CO2 Eq.)
-3-13 | CO2 Emissions from Fossil Fuel Combustion in Transportation End-Use Sector
-A-5 | 2023 Energy Consumption Data and CO2 Emissions from Fossil Fuel Combustion by Fuel Type
-5-3 | CH4 Emissions from Enteric Fermentation (MMT CO2 Eq.)
-3-64 | CH4 Emissions from Natural Gas Systems (MMT CO2 Eq.)
-5-18 | Direct N2O Emissions from Agricultural Soils by Land Use Type and Nitrogen Input Type (MMT CO2 Eq.)
-4-124 | Emissions of HFCs, PFCs, and CO2 from ODS Substitutes (MMT CO2 Eq.) by Sector
-3-25 | 2023 Adjusted Non-Energy Use Fossil Fuel Consumption, Storage, and Emissions
-5-7 | CH4 and N2O Emissions from Manure Management (MMT CO2 Eq.)
-3-45 | CH4 Emissions from Petroleum Systems (MMT CO2 Eq.)
-3-66 | CO2 Emissions from Natural Gas Systems (MMT)
-A-90 | HFC Emissions from Transportation Sources (MMT CO2 Eq.)
-4-55 | CO2 and CH4 Emissions from Petrochemical Production (MMT CO2 Eq.)
-5-19 | Indirect N2O Emissions from Agricultural Soils (MMT CO2 Eq.)
-3-47 | CO2 Emissions from Petroleum Systems (MMT CO2)
-3-9 | N2O Emissions from Stationary Combustion (MMT CO2 Eq.)
-3-15 | N2O Emissions from Mobile Combustion (MMT CO2 Eq.)
-4-118 | PFC, HFC, SF6, NF3, and N2O Emissions from Electronics Manufacture (MMT CO2 Eq.)
 3-8 | CH4 Emissions from Stationary Combustion (MMT CO2 Eq.)
-4-64 | Emissions of HFCs, PFCs, SF6, and NF3 from production of Fluorochemicals Other Than HCFC-22 (Metric Tons)
+3-9 | N2O Emissions from Stationary Combustion (MMT CO2 Eq.)
+3-13 | CO2 Emissions from Fossil Fuel Combustion in Transportation End-Use Sector
 3-14 | CH4 Emissions from Mobile Combustion (MMT CO2 Eq.)
-4-106 | SF6, HFC-134a, FK 5-1-12 and CO2 Emissions from Magnesium Production and Processing (MMT CO2 Eq.)
-4-132 | SF6 and PFC Emissions from Other Product Use (MMT CO2 Eq.)
-4-63 | Emissions of HFCs, PFCs, SF6, and NF3 from production of Fluorochemicals Other Than HCFC-22 (MMT CO2 Eq.)
-4-59 | HFC-23 Emissions from HCFC-22 Production (MMT CO2 Eq.)
-4-100 | PFC Emissions from Aluminum Production (MMT CO2 Eq.)
-5-29 | CH4 and N2O Emissions from Field Burning of Agricultural Residues (MMT CO2 Eq.)
+3-15 | N2O Emissions from Mobile Combustion (MMT CO2 Eq.)
+3-25 | 2023 Adjusted Non-Energy Use Fossil Fuel Consumption, Storage, and Emissions
+3-45 | CH4 Emissions from Petroleum Systems (MMT CO2 Eq.)
+3-47 | CO2 Emissions from Petroleum Systems (MMT CO2)
 3-49 | N2O Emissions from Petroleum Systems (Metric Tons CO2 Eq.)
+3-64 | CH4 Emissions from Natural Gas Systems (MMT CO2 Eq.)
+3-66 | CO2 Emissions from Natural Gas Systems (MMT)
 3-68 | N2O Emissions from Natural Gas Systems (Metric Tons CO2 Eq.)
+4-55 | CO2 and CH4 Emissions from Petrochemical Production (MMT CO2 Eq.)
+4-59 | HFC-23 Emissions from HCFC-22 Production (MMT CO2 Eq.)
+4-63 | Emissions of HFCs, PFCs, SF6, and NF3 from production of Fluorochemicals Other Than HCFC-22 (MMT CO2 Eq.)
+4-64 | Emissions of HFCs, PFCs, SF6, and NF3 from production of Fluorochemicals Other Than HCFC-22 (Metric Tons)
+4-106 | SF6, HFC-134a, FK 5-1-12 and CO2 Emissions from Magnesium Production and Processing (MMT CO2 Eq.)
+4-100 | PFC Emissions from Aluminum Production (MMT CO2 Eq.)
+4-118 | PFC, HFC, SF6, NF3, and N2O Emissions from Electronics Manufacture (MMT CO2 Eq.)
+4-124 | Emissions of HFCs, PFCs, and CO2 from ODS Substitutes (MMT CO2 Eq.) by Sector
+4-132 | SF6 and PFC Emissions from Other Product Use (MMT CO2 Eq.)
+5-3 | CH4 Emissions from Enteric Fermentation (MMT CO2 Eq.)
+5-7 | CH4 and N2O Emissions from Manure Management (MMT CO2 Eq.)
+5-18 | Direct N2O Emissions from Agricultural Soils by Land Use Type and Nitrogen Input Type (MMT CO2 Eq.)
+5-19 | Indirect N2O Emissions from Agricultural Soils (MMT CO2 Eq.)
+5-29 | CH4 and N2O Emissions from Field Burning of Agricultural Residues (MMT CO2 Eq.)
+A-5 | 2023 Energy Consumption Data and CO2 Emissions from Fossil Fuel Combustion by Fuel Type
+A-90 | HFC Emissions from Transportation Sources (MMT CO2 Eq.)
 
 ### Table 6. MECS Tables Used
 No. | Name
 -- | --
-1-2 | [Consumption of Energy for All Purposes] By Manufacturing Industry and Region (trillion Btu)
-1-5 | [Consumption of Energy for All Purposes]  By Further Classification of 'Other' Energy Sources
-2-1 | [Energy Used as a Nonfuel (Feedstock)] By Manufacturing Industry and Region (physical units)
 2-2 | [Energy Used as a Nonfuel (Feedstock)]  By Manufacturing Industry and Region (trillion Btu)
-3-1 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (physical units)
 3-2 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (trillion Btu)
-7-2 | [Average Prices of Purchased Energy Sources] All Collected Energy Sources By Manufacturing Industry and Region (dollars per million Btu)
-7-10 | [Expenditures for Purchased Energy (Millions of Dollars)] Purchased Electricity, Natural Gas, Steam by type of Supplier, Manufacturing, Industry, and Region
 
 ## Sector Attribution Model
 
