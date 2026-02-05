@@ -238,12 +238,6 @@ The GHGI is the primary source of all GHG emissions data.
 The specific tables from which data are used are included in Table 5. 
 Data from these tables were selected because they were determined to be the most relevant to estimate emissions by detailed sector corresponding with the industry data.
 
-Other sources are used to attribute the broader emissions to specific industries when the GHGI does not provide the needed resolution. 
-The Manufacturing Energy Consumption Survey (MECS) is the summary results of a national survey of energy used by manufacturers in the U.S. 
-Data used (Table 6) includes total energy consumption by industry as well as fuel use and nonfuel use of energy sources and average prices for energy. 
-The Census of Agriculture (CoA) is the most extensive national survey of agriculture and forestry. From the CoA, various data are used for area of land for general agriculture and specific crop types, both by crop name and NAICS code. The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION" , "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", ETC. as the measures available per crop type vary. 
-From the Mineral Yearbook (MYB), data on secondary (recycled) lead production is used. 
-
 ### Table 5. GHG Inventory Tables Used
 No. | Name
 -- | --
@@ -277,12 +271,6 @@ No. | Name
 A-5 | 2023 Energy Consumption Data and CO2 Emissions from Fossil Fuel Combustion by Fuel Type
 A-90 | HFC Emissions from Transportation Sources (MMT CO2 Eq.)
 
-### Table 6. MECS Tables Used
-No. | Name
--- | --
-2-2 | [Energy Used as a Nonfuel (Feedstock)]  By Manufacturing Industry and Region (trillion Btu)
-3-2 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (trillion Btu)
-
 ## Sector Attribution Model
 
 In the GHGI, U.S. GHG emissions are typically reported by emitting activity and gas.
@@ -295,6 +283,19 @@ Next a secondary dataset is identified to proportionally attribute the emissions
 For example, purchases made from the "Farm machinery and equipment manufacturing" (333111) sector, as identified in the Use table, are used to attribute emissions from agricultural equipment.
 The implicit assumption here is that those sectors that purchase a higher share of agricultural equipment are likely responsible for a higher share of mobile emissions from agricultural equipment.
 The selection of target sectors and attribution approaches is done in a transparent and modular way to facilitate evaluation and sensitivity to these decisions.
+
+In addition to the Use table, other sources are used to attribute the broader emissions to specific industries when the GHGI does not provide the needed resolution.
+The Manufacturing Energy Consumption Survey (MECS) is the summary results of a national survey of energy used by manufacturers in the U.S.
+Data used (Table 6) includes fuel use and nonfuel use of energy sources by industry.
+The Census of Agriculture (CoA) is the most extensive national survey of agriculture and forestry. From the CoA, various data are used for area of land for general agriculture and specific crop types, both by crop name and NAICS code.
+The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION", "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", etc. as the measures available per crop type vary.
+From the Mineral Yearbook (MYB), data on secondary (recycled) lead production is used.
+
+### Table 6. MECS Tables Used
+No. | Name
+-- | --
+2-2 | [Energy Used as a Nonfuel (Feedstock)]  By Manufacturing Industry and Region (trillion Btu)
+3-2 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (trillion Btu)
 
 ## Global Warming Potential Indicator
 The SAM provides data for emissions of individual gas (e.g. methane) by industries (with one exception listed above).  
