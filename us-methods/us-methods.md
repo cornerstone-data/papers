@@ -285,7 +285,16 @@ No. | Name
 
 ## Sector Attribution Model
 
-
+In the GHGI, U.S. GHG emissions are typically reported by emitting activity and gas.
+In some cases, those reporting activities align directly with an industry included in the model.
+For example, emissions of CH4 from Landfills (Table 2-1) are assigned directly to 562212, while emissions of CO2 from “Refining” in petroleum systems (Table 3-45) are assigned directly to 324110.
+However, in many cases, the reported emissions require a secondary dataset to accurately attribute them to an economic sector.
+For example, mobile emissions of CH4 from agricultural equipment (Table 3-14) likely includes emissions from several economic sectors.
+In these cases, the potential target sectors are identified (i.e., sectors likely to have agricultural equipment use, 1111A0, 1111B0, 111200, 111300, 111400).
+Next a secondary dataset is identified to proportionally attribute the emissions across those sectors in an appropriate way.
+For example, purchases made from the "Farm machinery and equipment manufacturing" (333111) sector, as identified in the Use table, are used to attribute emissions from agricultural equipment.
+The implicit assumption here is that those sectors that purchase a higher share of agricultural equipment are likely responsible for a higher share of mobile emissions from agricultural equipment.
+The selection of target sectors and attribution approaches is done in a transparent and modular way to facilitate evaluation and sensitivity to these decisions.
 
 ## Global Warming Potential Indicator
 The SAM provides data for emissions of individual gas (e.g. methane) by industries (with one exception listed above).  
