@@ -27,7 +27,7 @@ The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
 | Margins                                                    | BEA | [Bureau of Economic Analysis Industry Underlying Estimates](https://www.bea.gov/industry/industry-underlying-estimates) | 2017 |
 | Import Matrix, After Redefinitions                         | BEA | [Bureau of Economic Analysis Industry Input-Output Accounts](https://www.bea.gov/industry/input-output-accounts-data) | 2017 |
 | Summary Statistics for  Waste Sector (EC1756BASIC)                                              | Census Bureau | [2017 Administrative and Support and Waste Management and Remediation Services (NAICS Sector 56)](https://www.census.gov/data/tables/2017/econ/economic-census/naics-sector-56.html) | 2017 |
-|                                               | Census Bureau | [Services Annual Survey (SAS)](https://www2.census.gov/programs-surveys/sas/tables/time-series/sas-latest/sas-22.xlsx) | 2017 |
+| Services Annual Survey                                              | Census Bureau | [Services Annual Survey (SAS)](https://www2.census.gov/programs-surveys/sas/tables/time-series/sas-latest/sas-22.xlsx) | 2017 |
 |  Biennial Report                                           |  EPA | [RCRAInfo Hazardous Waste Information Platform](https://rcrapublic.epa.gov/rcra-hwip/) | 2012 |
 
 The benchmark Make and Use matrices from the BEA, provided at 5 year intervals, were the fundamental US IOT inputs to USEEIO and CEDA models.
@@ -180,14 +180,13 @@ $$ A = U\hat{x}^{-1}W $$
 $L$, the Leontief inverse, or the total requirements matrix, is obtained from $A$.
 $L$ is in commodity x commodity form and represents the total upstream inputs of commodities (rows) used to make a commodity (columns).
 
-$$
-L = (I - A)^{-1}
-$$ {#eq:L}
+$$ L = (I - A)^{-1} $$ 
 
 We also prepare domestic versions of the $A$ matrix.  This starts with using a version of the industry transactions in the Use table only with uses of domestic commodities, also known as the import matrix, $U_m$. 
-This has to be conformed to the CS model schema through an aggregation matrix, then we subtracting it from from the Use matrix to estimate a domestic Use table, $U_d$, as in [@Eq:U_d].
-
+This has to be conformed to the CS model schema through an aggregation matrix.
 $$ U_m = O_c \bar{U_m} O_i' $$
+
+Then we subtracting it from from the Use matrix to estimate a domestic Use table, $U_d$.
 
 $$ U_d = U - U_m $$
 
@@ -208,7 +207,7 @@ $$ \rho_{y} = \frac{\Pi_{by}}{\Pi_{y}} $$
 where $\rho_{y}$ is a vector of inflation factors for every commodity.
 
 The price indices are derived from the BEA Gross Output Chain Price Index, which is a industry by year matrix, $\Pi_i$, of price indices reflecting the annual change in the price of industry gross output relative to the IO year, which is set to 100. 
-The commodity price indices are derived from $\Pi_i$ , using the $\W$ transformation matrix after $\Pi$ has been conformed to the model schema.
+The commodity price indices are derived from $\Pi_i$ , using the $W$ transformation matrix after $\Pi$ has been conformed to the model schema.
 
 $$ \Pi_i = O_i \bar{\Pi_i} $$
 
