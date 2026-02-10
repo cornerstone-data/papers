@@ -37,9 +37,11 @@ We use the producer price version as was done previously both for USEEIO and CED
 The purchaser price version provide less transparency in the input requirements because for each value in the Use table for an industries' use of a commodity includes not just the value of the commodity used but also the value of added wholesale, retail and transportation costs.
 The producer price version is used to provide more transparency.
 
-We use the AR version of the Make and Use tables, which were previously used in CEDA.
+We use the AR version of the Make and Use tables, which were previously used in CEDA. 
+See [discussion #3](https://github.com/cornerstone-data/methods/discussions/3) on the choice of AR tables.
 "Redefinitions" are defined by BEA in the [IO manual](https://www.bea.gov/resources/methodologies/concepts-methods-io-accounts) as "secondary products that are produced using input patterns that differ substantially from that of the primary product of the industry in which they are produced."
-In the AR Make table, the BEA takes selected commodity outputs from industries that are producing it as a secondary product and moves it to the primary producing industry (the industry with the same code as the commodity since in the BEA tables industries use the same codes as commodities). The following list represents most of the redefinitions:
+In the AR Make table, the BEA takes selected commodity outputs from industries that are producing it as a secondary product and moves it to the primary producing industry (the industry with the same code as the commodity since in the BEA tables industries use the same codes as commodities). 
+The following list represents most of the redefinitions:
 - Construction activities performed by other industries are redefined to construction.
 - Manufacturing activities in non-manufacturing industries are redefined to manufacturing.
 - Trade activities in non-trade industries are redefined to trade. Redefinitions
@@ -47,7 +49,7 @@ are not made between wholesale and retail trade.
 - Rental activities in non-rental industries are redefined to real estate and rental industries.
 - Service activities in non-service industries are redefined to services."
 
-This shifts around industry output but commodity output stays the same.
+The redefinitions shift around industry output but commodity output stays the same.
 In the AR Use table, uses of commodities are additionally moved away from industries where commodity output is removed, and to the industries where commodity output was added.
 The result of the redefinitions are commodities with input structures that more closely match the associated primary industry input structure.
 
@@ -241,43 +243,43 @@ Data from these tables were selected because they were determined to be the most
 ### Table 5. GHG Inventory Tables Used
 No. | Name
 -- | --
-2-1 | Recent Trends in U.S. Greenhouse Gas Emissions and Sinks (MMT CO2 Eq.)
-3-8 | CH4 Emissions from Stationary Combustion (MMT CO2 Eq.)
-3-9 | N2O Emissions from Stationary Combustion (MMT CO2 Eq.)
-3-13 | CO2 Emissions from Fossil Fuel Combustion in Transportation End-Use Sector
-3-14 | CH4 Emissions from Mobile Combustion (MMT CO2 Eq.)
-3-15 | N2O Emissions from Mobile Combustion (MMT CO2 Eq.)
+2-1 | Recent Trends in U.S. Greenhouse Gas Emissions and Sinks (MMT $CO_2$  Eq.)
+3-8 | $CH_4$  Emissions from Stationary Combustion (MMT $CO_2$  Eq.)
+3-9 | $N_2O$ Emissions from Stationary Combustion (MMT $CO_2$  Eq.)
+3-13 | $CO_2$  Emissions from Fossil Fuel Combustion in Transportation End-Use Sector
+3-14 | $CH_4$  Emissions from Mobile Combustion (MMT $CO_2$  Eq.)
+3-15 | $N_2O$ Emissions from Mobile Combustion (MMT $CO_2$  Eq.)
 3-25 | 2023 Adjusted Non-Energy Use Fossil Fuel Consumption, Storage, and Emissions
-3-45 | CH4 Emissions from Petroleum Systems (MMT CO2 Eq.)
-3-47 | CO2 Emissions from Petroleum Systems (MMT CO2)
-3-49 | N2O Emissions from Petroleum Systems (Metric Tons CO2 Eq.)
-3-64 | CH4 Emissions from Natural Gas Systems (MMT CO2 Eq.)
-3-66 | CO2 Emissions from Natural Gas Systems (MMT)
-3-68 | N2O Emissions from Natural Gas Systems (Metric Tons CO2 Eq.)
-4-55 | CO2 and CH4 Emissions from Petrochemical Production (MMT CO2 Eq.)
-4-59 | HFC-23 Emissions from HCFC-22 Production (MMT CO2 Eq.)
-4-63 | Emissions of HFCs, PFCs, SF6, and NF3 from production of Fluorochemicals Other Than HCFC-22 (MMT CO2 Eq.)
-4-64 | Emissions of HFCs, PFCs, SF6, and NF3 from production of Fluorochemicals Other Than HCFC-22 (Metric Tons)
-4-106 | SF6, HFC-134a, FK 5-1-12 and CO2 Emissions from Magnesium Production and Processing (MMT CO2 Eq.)
-4-100 | PFC Emissions from Aluminum Production (MMT CO2 Eq.)
-4-118 | PFC, HFC, SF6, NF3, and N2O Emissions from Electronics Manufacture (MMT CO2 Eq.)
-4-124 | Emissions of HFCs, PFCs, and CO2 from ODS Substitutes (MMT CO2 Eq.) by Sector
-4-132 | SF6 and PFC Emissions from Other Product Use (MMT CO2 Eq.)
-5-3 | CH4 Emissions from Enteric Fermentation (MMT CO2 Eq.)
-5-7 | CH4 and N2O Emissions from Manure Management (MMT CO2 Eq.)
-5-18 | Direct N2O Emissions from Agricultural Soils by Land Use Type and Nitrogen Input Type (MMT CO2 Eq.)
-5-19 | Indirect N2O Emissions from Agricultural Soils (MMT CO2 Eq.)
-5-29 | CH4 and N2O Emissions from Field Burning of Agricultural Residues (MMT CO2 Eq.)
-A-5 | 2023 Energy Consumption Data and CO2 Emissions from Fossil Fuel Combustion by Fuel Type
-A-90 | HFC Emissions from Transportation Sources (MMT CO2 Eq.)
+3-45 | $CH_4$  Emissions from Petroleum Systems (MMT $CO_2$  Eq.)
+3-47 | $CO_2$  Emissions from Petroleum Systems (MMT $CO_2$ )
+3-49 | $N_2O$ Emissions from Petroleum Systems (Metric Tons $CO_2$  Eq.)
+3-64 | $CH_4$  Emissions from Natural Gas Systems (MMT $CO_2$  Eq.)
+3-66 | $CO_2$  Emissions from Natural Gas Systems (MMT)
+3-68 | $N_2O$ Emissions from Natural Gas Systems (Metric Tons $CO_2$  Eq.)
+4-55 | $CO_2$  and $CH_4$  Emissions from Petrochemical Production (MMT $CO_2$  Eq.)
+4-59 | HFC-23 Emissions from HCFC-22 Production (MMT $CO_2$  Eq.)
+4-63 | Emissions of HFCs, PFCs, $SF_6$, and NF3 from production of Fluorochemicals Other Than HCFC-22 (MMT $CO_2$  Eq.)
+4-64 | Emissions of HFCs, PFCs, $SF_6$, and NF3 from production of Fluorochemicals Other Than HCFC-22 (Metric Tons)
+4-106 | $SF_6$, HFC-134a, FK 5-1-12 and $CO_2$  Emissions from Magnesium Production and Processing (MMT $CO_2$  Eq.)
+4-100 | PFC Emissions from Aluminum Production (MMT $CO_2$  Eq.)
+4-118 | PFC, HFC, $SF_6$, NF3, and $N_2O$ Emissions from Electronics Manufacture (MMT $CO_2$  Eq.)
+4-124 | Emissions of HFCs, PFCs, and $CO_2$  from ODS Substitutes (MMT $CO_2$  Eq.) by Sector
+4-132 | $SF_6$ and PFC Emissions from Other Product Use (MMT $CO_2$  Eq.)
+5-3 | $CH_4$  Emissions from Enteric Fermentation (MMT $CO_2$  Eq.)
+5-7 | $CH_4$  and $N_2O$ Emissions from Manure Management (MMT $CO_2$  Eq.)
+5-18 | Direct $N_2O$ Emissions from Agricultural Soils by Land Use Type and Nitrogen Input Type (MMT $CO_2$  Eq.)
+5-19 | Indirect $N_2O$ Emissions from Agricultural Soils (MMT $CO_2$  Eq.)
+5-29 | $CH_4$  and $N_2O$ Emissions from Field Burning of Agricultural Residues (MMT $CO_2$  Eq.)
+A-5 | 2023 Energy Consumption Data and $CO_2$  Emissions from Fossil Fuel Combustion by Fuel Type
+A-90 | HFC Emissions from Transportation Sources (MMT $CO_2$  Eq.)
 
 ## Sector Attribution Model
 
 In the GHGI, U.S. GHG emissions are typically reported by emitting activity and gas.
 In some cases, those reporting activities align directly with an industry included in the model.
-For example, emissions of CH4 from Landfills (Table 2-1) are assigned directly to 562212, while emissions of CO2 from “Refining” in petroleum systems (Table 3-45) are assigned directly to 324110.
+For example, emissions of $CH_4$ from Landfills (Table 2-1) are assigned directly to 562212, while emissions of $CO_2$ from “Refining” in petroleum systems (Table 3-45) are assigned directly to 324110.
 However, in many cases, the reported emissions require a secondary dataset to accurately attribute them to an economic sector.
-For example, mobile emissions of CH4 from agricultural equipment (Table 3-14) likely includes emissions from several economic sectors.
+For example, mobile emissions of $CH_4$ from agricultural equipment (Table 3-14) likely includes emissions from several economic sectors.
 In these cases, the potential target sectors are identified (i.e., sectors likely to have agricultural equipment use, 1111A0, 1111B0, 111200, 111300, 111400).
 Next a secondary dataset is identified to proportionally attribute the emissions across those sectors in an appropriate way.
 For example, purchases made from the "Farm machinery and equipment manufacturing" (333111) sector, as identified in the Use table, are used to attribute emissions from agricultural equipment.
@@ -291,6 +293,7 @@ The Census of Agriculture (CoA) is the most extensive national survey of agricul
 The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION", "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", etc. as the measures available per crop type vary.
 From the Mineral Yearbook (MYB), data on secondary (recycled) lead production is used.
 
+
 ### Table 6. MECS Tables Used
 No. | Name
 -- | --
@@ -300,7 +303,7 @@ No. | Name
 ## Global Warming Potential Indicator
 The SAM provides data for emissions of individual gas (e.g. methane) by industries (with one exception listed above).  
 These gases each have different potential to cause radiative forcing which is the primary way in which these gases cause global warming.
-Global warming potentials (GWPs) are factors that relate GHGs to the global warming potential they have over a given time frame by estimating this potential in kg of CO2 equivalent (CO2e). 
+Global warming potentials (GWPs) are factors that relate GHGs to the global warming potential they have over a given time frame by estimating this potential in kg of $CO_2$  equivalent ($CO_2$ e). 
 We use the most GWPs for a 100 yr time horizon from the IPCC 6th Assessment Report (AR6) that are matched to the FEDEFL flows from the [IPCC AR4, AR5, and AR6 20-, 100-, and 500-year GWPs](https://doi.org/10.23719/1529821) dataset. 
 These GWPs become the indicator used in the model.
 We conform these into a vector, $c$, of GWPs per gas.
@@ -337,7 +340,7 @@ This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2
 
 A series of coefficient matrices are provided that are products of combining more than one of the economic, physical flow, and indicator components. 
 The direct impacts of a sector in a given indicator unit per model dollar year, can be calculated with the following equation.
-$d$ is an indicator x sector matrix and contains in each column the direct CO2e result per 1 USD output of the sector, also known as an impact result.
+$d$ is an indicator x sector matrix and contains in each column the direct $CO_2$ e result per 1 USD output of the sector, also known as an impact result.
 
 $$ d = cB $$ 
 
