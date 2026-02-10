@@ -27,8 +27,8 @@ The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
 | Margins                                                    | BEA | [Bureau of Economic Analysis Industry Underlying Estimates](https://www.bea.gov/industry/industry-underlying-estimates) | 2017 |
 | Import Matrix, After Redefinitions                         | BEA | [Bureau of Economic Analysis Industry Input-Output Accounts](https://www.bea.gov/industry/input-output-accounts-data) | 2017 |
 | Summary Statistics for  Waste Sector (EC1756BASIC)                                              | Census Bureau | [2017 Administrative and Support and Waste Management and Remediation Services (NAICS Sector 56)](https://www.census.gov/data/tables/2017/econ/economic-census/naics-sector-56.html) | 2017 |
-| Services Annual Survey (SAS)                                              | Census Bureau |  | 2017 |
-| RCRA Online                                             |  EPA |  | 2012 |
+|                                               | Census Bureau | [Services Annual Survey (SAS)](https://www2.census.gov/programs-surveys/sas/tables/time-series/sas-latest/sas-22.xlsx) | 2017 |
+|  Biennial Report                                           |  EPA | [RCRAInfo Hazardous Waste Information Platform](https://rcrapublic.epa.gov/rcra-hwip/) | 2012 |
 
 The benchmark Make and Use matrices from the BEA, provided at 5 year intervals, were the fundamental US IOT inputs to USEEIO and CEDA models.
 The 2017 tables are the most recent official release.
@@ -57,6 +57,9 @@ The BEA Gross Output by Industry is the authoritative dataset on both annual gro
 The Import Matrix (AR) is an accompanying table to the selected Use table with values for uses of imported commodities by industries and final users.
 The Margins table contain data on cost of transportation, wholesale and retail to move each commodity to each user corresponding with the benchmark Use table.
 The final three sources listed in Table 1 are used for the waste sector disaggregation.
+The Biennial Report is a collection of has data on the generation, handling and ultimate disposition of wastes that are according the U.S. [Resource Conservation and Recovery Act (RCRA)](https://www.epa.gov/laws-regulations/summary-resource-conservation-and-recovery-act) declared as hazardous waste in the U.S. 
+It includes data on specific waste generators, waste type generated, quantity generated, and disposition of the waste. 
+The EC1756BASIC is a set of summary statistics derived from the Economic Census of the Waste sector, reporting data such as costs, revenue, and number of establishments.
 All the uses of these tables are described below. 
 
 ## Selected IOT Schema
@@ -145,6 +148,13 @@ Note that these correspondence matrices do not account for the additions of the 
 $$ V = O_i \bar{V} O_c' $$
 
 $$ U = O_c \bar{U} O_i' $$
+
+Following this initial mapping to the CS schema, the _Waste and Remediation Services_ (562000) industry and commodity are disaggregated in the $U$ and $V$ tables to match those sectors give in Table 2. 
+ In the Use table, the Biennial Report data on waste shipped to and from the waste sectors is used to allocate the new waste management commodities across the new waste waste management industries based on the relative shares of the total waste shipped.
+ The new waste industries uses of non-waste commodities are estimated based on the detailed expenses from the SAS of the waste industries.
+ The uses of the new waste commodities by non-waste industries was estimated using the Economic Census data.
+ In the Make table, we assume that each new waste industry only produces its primary waste commodity.
+ Further details on this disaggregation procedure can be found in the the Disaggregation of the waste and remediation services sector section of the [USEEIO v2 documentation](https://doi.org/10.1038/s41597-022-01293-7).
 
 The total commodity and industry output, $q$ and $x$, is derived from the Make table, where $q$ is the columns sums and $x$ is the row sums.
 Although the commodity, _Scrap_, is not part of the final sector schema, it does need to be included in order to adjust the IOT.  
