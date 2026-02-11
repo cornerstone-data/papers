@@ -9,7 +9,7 @@ The Cornerstone team first reviewed and identified all the differences between r
 That work is captured in a discussions and related scripts found in the [cornerstone-data/methods](https://github.com/cornerstone-data/methods) repository. References to those discussions are provided herein.
 This paper synthesizes those discussions into a consolidated and harmonious description of the selected methods.
 The description of the methodology is split into three sections: (1) the economic data and steps used to forming the basis economic input-output table (IOT) matrices and associated economic datasets;
-(2) the greenhouse gas emissions (GHG) and indicator datasets and the approach used to estimate industry GHG totals; and (3) the integration of the economic and environmental data to form model result matrices of direct and indirect GHG emissions per dollar. 
+(2) the greenhouse gas emissions (GHG) model and the approach used to estimate industry GHG totals; and (3) the integration of the economic and environmental data to form model result matrices of direct GHG emissions per dollar. 
 
 # Data Source and Procedures for Construction of IOTs
 
@@ -194,7 +194,7 @@ Then it can be used to derive the domestic version of the direct requirements, $
 
 $$ A_d= U_d\hat{x}^{-1}W $$
 
-We also develop two types of price adjustment factors, one to adjust for inflation, $\rho$, and one to adjust from producer price to purchaser price, $\Phi$.
+We also develop price adjustment factors to adjust for inflation, $\rho$.
 
 The factor are specific to each commodity and year. 
 
@@ -212,22 +212,6 @@ The commodity price indices are derived from $\Pi_i$ , using the $W$ transformat
 $$ \Pi_i = O_i \bar{\Pi_i} $$
 
 $$ \Pi_i = \Pi_i W $$
-
-The second of price adjustment matrix is $\Phi$, which is composed of factors to convert into purchaser price. 
-Purchaser price reflects the producer's price plus sale and transportation margins [see BEA IO manual](https://www.bea.gov/resources/methodologies/concepts-methods-io-accounts).
-
- The values in $\Phi$ are commodity-specific producer:purchaser price ratios where a value of $\Phi_{c,y}$ is a ratio of commodity output, $q$ in producer price for a given year to commodity output in purchaser price for that given year. 
- 
-$$ \Phi_c,y = \frac{q_{PRO,c,by}}{q_{PUR,c,y}} $$ 
-
-The origins of $\Phi$ is the Margins tables provide values for transportation, $t$, wholesale, $w$, and retail, $r$, specific to each commodity consumed by industries, households or investors. These same year margins data are used for all years, however they are price-adjusted first to calculate a total year specific margin
-
-$$ q_{PUR,c,y} = q_cP_{c,y} + t_{c,y}P_{t,y} + w_{c,y}P_{w,y} + r_{c,y}P_{r,y} $$
-
-where $P_{m,y}$ for a margin type ($t$, $w$ or $r$) is calculated in [@Eq:Rho_m], which is the weighted average of price adjustments in commodities that make up $m$ (e.g. Truck transportation, Water transportation, Rail transportation are commodities in set $m$ for transportation).
-
-$$ P_{m,y} = \frac{\sum_{c\in m}q_{c,y}P_{c,y}} {\sum_{c\in m}q_{c,y}} $$
-
 
 # GHG Emissions Model and Indicators
 
@@ -302,20 +286,11 @@ The Census of Agriculture (CoA) is the most extensive national survey of agricul
 The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION", "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", etc. as the measures available per crop type vary.
 From the Mineral Yearbook (MYB), data on secondary (recycled) lead production is used.
 
-
 ### Table 6. MECS Tables Used
 No. | Name
 -- | --
 2-2 | [Energy Used as a Nonfuel (Feedstock)]  By Manufacturing Industry and Region (trillion Btu)
 3-2 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (trillion Btu)
-
-## Global Warming Potential Indicator
-The SAM provides data for emissions of individual gas (e.g. methane) by industries (with one exception listed above).  
-These gases each have different potential to cause radiative forcing which is the primary way in which these gases cause global warming.
-Global warming potentials (GWPs) are factors that relate GHGs to the global warming potential they have over a given time frame by estimating this potential in kg of $CO_2$  equivalent ($CO_2$ e). 
-We use the most GWPs for a 100 yr time horizon from the IPCC 6th Assessment Report (AR6) that are matched to the FEDEFL flows from the [IPCC AR4, AR5, and AR6 20-, 100-, and 500-year GWPs](https://doi.org/10.23719/1529821) dataset. 
-These GWPs become the indicator used in the model.
-We conform these into a vector, $c$, of GWPs per gas.
 
 # Creating the Environmentally-Extended IO model
 
@@ -346,23 +321,4 @@ We also refer to it as a flow coefficient matrix.
 The resulting coefficients from these calculations can be interpreted as a measure of the environmental intensity of a sector in the year the environmental data are reported, but given in terms of the IO year dollar value.
 
 This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2. A discussion of this approach is found in [#16](https://github.com/cornerstone-data/methods/discussions/16).
-
-A series of coefficient matrices are provided that are products of combining more than one of the economic, physical flow, and indicator components. 
-The direct impacts of a sector in a given indicator unit per model dollar year, can be calculated with the following equation.
-$d$ is an indicator x sector matrix and contains in each column the direct $CO_2$ e result per 1 USD output of the sector, also known as an impact result.
-
-$$ d = cB $$ 
-
-With the flow coefficient matrix $B$ and the total requirements matrix $L$, the matrix $M$ which contains the direct and indirect flow coefficients can be calculated with the following equation. 
-
-$$ M = BL $$ 
-
-The matrix $M$ is a flow x sector matrix and contains in each row the direct plus indirect flows per 1 USD output of the sector in column $by$ dollars in producer price.
-
-With the direct impacts $d$ and the total requirements $L$, the matrix $N$ which contains the direct plus indirect impact coefficients can be calculated via the following equation. 
-
-$$ n = dL $$ 
-
-$n$ combines each economic, flow and indicator component. $n$ is an indicator x sector vector and contains the direct and indirect impact result per 1 USD output of commodity in $by$ dollars in producer price.
-
 
