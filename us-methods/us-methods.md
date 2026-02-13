@@ -215,17 +215,19 @@ $$ \Pi_i = \Pi_i W $$
 
 # GHG Emissions Model and Indicators
 
+The GHG emissions model is largely based on previously GHG attribution models led by EPA [cite Young and Ingwersen] using the FLOWSA python package [cite Birney].
+
 ## Data Sources
 
 Table 4 has a list of the data sources used in the emissions model.
 
 ### Table 4. Data Sources Used in GHG Emission Model
+
 | Name                                                       | Creator | Sources | DataYears |
 |:-----------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------|:----------|
 | GHG Inventory | EPA | [ Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks) | 2023 |
 | COA Cropland   | USDA | [Department of Agriculture Census of Agriculture](https://www.eia.gov/consumption/manufacturing/) | 2022 |
-| MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey ](https://www.eia.gov/consumption/manufacturing/) | 2018 |
-| MYB: Lead  | USGS | [U.S. Geological Survey Mineral Yearbook](https://www.usgs.gov/centers/national-minerals-information-center/lead-statistics-and-information) | 2020 |
+| MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey](https://www.eia.gov/consumption/manufacturing/) | 2022 |
 
 The US GHG Inventory (GHGI) is an authoritative estimate of national GHG emissions and sinks for the U.S. that includes estimates of emissions by broad sectors as specific activities. 
 
@@ -277,6 +279,7 @@ In these cases, the potential target sectors are identified (i.e., sectors likel
 Next a secondary dataset is identified to proportionally attribute the emissions across those sectors in an appropriate way.
 For example, purchases made from the "Farm machinery and equipment manufacturing" (333111) sector, as identified in the Use table, are used to attribute emissions from agricultural equipment.
 The implicit assumption here is that those sectors that purchase a higher share of agricultural equipment are likely responsible for a higher share of mobile emissions from agricultural equipment.
+For consistency with the economic modeling, the After Redefinitions versions of the Make and Use are used for attribution, see discussion [#45](https://github.com/cornerstone-data/methods/discussions/45).
 The selection of target sectors and attribution approaches is done in a transparent and modular way to facilitate evaluation and sensitivity to these decisions.
 
 In addition to the Use table, other sources are used to attribute the broader emissions to specific industries when the GHGI does not provide the needed resolution.
@@ -284,13 +287,22 @@ The Manufacturing Energy Consumption Survey (MECS) is the summary results of a n
 Data used (Table 6) includes fuel use and nonfuel use of energy sources by industry.
 The Census of Agriculture (CoA) is the most extensive national survey of agriculture and forestry. From the CoA, various data are used for area of land for general agriculture and specific crop types, both by crop name and NAICS code.
 The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION", "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", etc. as the measures available per crop type vary.
-From the Mineral Yearbook (MYB), data on secondary (recycled) lead production is used.
+
+The approach for building the GHG emissions model generally follows from that described in [cite Young] with some minor updates.
+The USGS Mineral Yearbook is dropped as an attribution source as emissions from lead production do not require attribution; primary lead production has not occured in the U.S. for many years (see discussion [#67](https://github.com/cornerstone-data/methods/discussions/67)).
+Data from EIA MECS are udpated to 2022 to better align with the temporal scope of the emissions data (see discussion [#68](https://github.com/cornerstone-data/methods/discussions/68)).
+Additional adjustments are performed to better align emissions to the target schema, e.g., in transportation (discussion [#39](https://github.com/cornerstone-data/methods/discussions/39)), natural gas (discussion [#34](https://github.com/cornerstone-data/methods/discussions/34)), and electricity (discussion [#33](https://github.com/cornerstone-data/methods/discussions/33)).
+Finally, the emissions attribution modeling in FLOWSA is built primarily on a NAICS schema [cite Birney] which can be aggreagated to the necssary [IOT sector schema](#selected-iot-schema).
+However to support cleaner aggregations where NAICS and the IOT schema do not align, a hybrid BEA schema is introduced into the emissions modeling, see discussion [#47](https://github.com/cornerstone-data/methods/discussions/47).
+In particular, new NAICS-like sector codes are incorporated for the Constrution (23*) and Government (92*) sectors in place of the appropriate NAICS.
+
 
 ### Table 6. MECS Tables Used
+
 No. | Name
 -- | --
-2-2 | [Energy Used as a Nonfuel (Feedstock)]  By Manufacturing Industry and Region (trillion Btu)
-3-2 | [Energy Consumption as a Fuel] By Manufacturing Industry and Region (trillion Btu)
+2-2 | [Energy Used as a Nonfuel (Feedstock)](https://www.eia.gov/consumption/manufacturing/data/2022/xls/Table2_2.xlsx)  By Manufacturing Industry and Region (trillion Btu)
+3-2 | [Energy Consumption as a Fuel](https://www.eia.gov/consumption/manufacturing/data/2022/xls/Table3_2.xlsx) By Manufacturing Industry and Region (trillion Btu)
 
 # Creating the Environmentally-Extended IO model
 
