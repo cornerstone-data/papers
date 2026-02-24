@@ -219,7 +219,6 @@ $$ \Pi_i = O_i \bar{\Pi_i} $$
 
 $$ \Pi_i = \Pi_i W $$
 
-
 The industry and commodity gross output are also estimated for non-IOT years. 
 The BEA provides a time-series of industry output that reflects output before redefinitions, \{bar}x.
 However, during redefinitions procedure some of industry output, reflecting co-production, is reallocated to the primary industry.
@@ -235,19 +234,21 @@ where $\bar{V^b}$ is the Make table before redefinitions
 We create a matrix $R$ of redefinition ratios
 $$ R = \hat{\bar{x}}^-1 V^d $$
 
-Now if we have industry output data for a new year, $\bar{x_y}, we can adjust this to match the redefinitions using the redefition ratios.
+Now if we have industry output data for a new year, $\bar{x_y}, we can adjust this for redefinitions using the redefinition ratios.
 
 We first estimate the equivalent of the Make difference in co-product output
 $$ V^d_y = \hat{\bar{x_y}} R$$
 
-The rows are summed and subtracted which represented removal of the co-product output from the producing industry.
+Then the rows are summed and subtracted which represented removal of the co-product output from the producing industry.
 
 $$ x_y = \bar{x_y} - (V^d_y  i) $$
 
-Then the columns are summed to add the new redefined co-product output to the primary industry
+The the columns are summed to add the new redefined co-product output to the primary industry
 
 $$ x_y = x_y + (i V^d_y) $$
 
+Note the final equation hold when commodity and industry indices of the Make table are identical as the total of the column sum is a commodity total and thus
+has to be added to the primary industry.
 
 # GHG Emissions Model and Indicators
 
