@@ -1,15 +1,22 @@
 
 # Methodology for Cornerstone U.S. National Model 
 
-authors, TBD
+Wesley Ingwersen
+Ben Young
+Mo Li
+Jorge Vendries
+Catherine Birney
+Brian Tobin
 
 This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0.
 This methodology draws on approaches used previously in the the USEEI0 and CEDA-US models. 
 The Cornerstone team first reviewed and identified all the differences between reference USEEIO and CEDA-US models, and the systematically assessed the differences both theoretically and quantitatively, as relevant. 
 That work is captured in a discussions and related scripts found in the [cornerstone-data/methods](https://github.com/cornerstone-data/methods) repository. References to those discussions are provided herein.
-This paper synthesizes those discussions into a consolidated and harmonious description of the selected methods.
+
 The description of the methodology is split into three sections: (1) the economic data and steps used to forming the basis economic input-output table (IOT) matrices and associated economic datasets;
 (2) the greenhouse gas emissions (GHG) model and the approach used to estimate industry GHG totals; and (3) the integration of the economic and environmental data to form model result matrices of direct GHG emissions per dollar. 
+
+Additional steps in the preparation of the EEIO model occur in concert with the development of the model for other countries and regions and their integration into the global model and are not described here.
 
 # Data Source and Procedures for Construction of IOTs
 
@@ -125,6 +132,7 @@ Variables are defined in Table 3.
 | **B**           | direct environmental flows per commodity output matrix                                 | flow x commodity      |
 | **C**           | characterization factor matrix                                                         | indicator x flow      |
 | c               | subscript for commodity                                                                |                       |    
+| **\chi**        | non-scrap output ratio vector                                                          | industry              |    
 | **i**           | vector of 1s                                                                           | varies                |
 | i               | subscript for industry                                                                 |                       |
 | **L**           | Leontief matrix                                                                        | commodity x commodity |
@@ -132,8 +140,11 @@ Variables are defined in Table 3.
 | **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
 | **O**           | correspondence matrix                                                                  | varies                |
 | **q**           | commodity output vector                                                                | commodities           |
-| **R**           | Redefinitions co-product ratios matrix                                                 | commodities           |
+| **$\Pi$**       | Price index matrix                                                                     | industry x year       |
+| **R**           | Redefinitions co-product ratios matrix                                                 | industry x commodity  |
 | **s**           | scrap production vector                                                                | industries            |
+| **\rho**        | inflation adjustment factor vector                                                     | industries            |
+| **T**           | Commodity mix matrix                                                                   | commodity x industry  |
 | **U**           | Use table industry transactions                                                        | commodity x industry  |
 | **V**           | Make table                                                                             | industry x commodity  |
 | **W**           | Transformation matrix                                                                  | industry x commodity  |
@@ -170,13 +181,13 @@ $$ q = iV $$
 
 $$ x = Vi + s $$
 
-We calculate the non-scrap portion of industry output, $nsr$. 
+We calculate the non-scrap portion of industry output for each industry in the vector, $\chi$. 
 
-$$ nsr = (x-s){x}^-1 $$
+$$ \chi = (x-s){x}^-1 $$
 
-This ratio is used to modify the commodity output normalized form of the Make matrix, also knows as the market shares matrix, to reflect an increased input of non-scrap commodities needed to fill the gap left from scrap removal in industry output. This new matrix is $W$.
+This vector is used to modify the commodity output normalized form of the Make matrix, also knows as the market shares matrix, to reflect an increased input of non-scrap commodities needed to fill the gap left from scrap removal in industry output. This new matrix is $W$.
 
-$$ W = \hat{nsr}^{-1} V\hat{q}^{-1} $$  
+$$ W = \hat{\chi}^{-1} V\hat{q}^{-1} $$  
 
 The Use table is normalized by industry output and then post-multiplied by $W$ to get $A$ in commodity by commodity format.
 This method for creating the $A$ matrix is based on the _industry- technology_ assumption, wherein the manufacture of the primary and any secondary commodities by an industry uses the same production requirements, and the commodity requirements are based therefore on the mix of industries that produce that commodity, weighted by their relative share of total commodity output. See [Input Output Analysis by R. Miller and P. Blair 2022](https://doi.org/10.1017/9781108676212).
@@ -249,6 +260,14 @@ $$ x_y = x_y + (i V^d_y) $$
 
 Note the final equation hold when commodity and industry indices of the Make table are identical as the total of the column sum is a commodity total and thus
 has to be added to the primary industry.
+
+Commodity output from each non IO year is estimated using the commodity mix matrix, $T$, to get the mix of commodities produced by each industry.
+
+$$ T = \hat{\chi}^{-1} V' \hat{x}^{-1} $$ 
+
+$$ q = T x $$
+
+The estimated industry output is assembled into a $X$ matrix of industry output by year.
 
 # GHG Emissions Model and Indicators
 
