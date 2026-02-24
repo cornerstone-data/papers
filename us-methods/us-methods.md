@@ -126,18 +126,24 @@ Variables are defined in Table 3.
 | **C**           | characterization factor matrix                                                         | indicator x flow      |
 | c               | subscript for commodity                                                                |                       |    
 | **i**           | vector of 1s                                                                           | varies                |
+| i               | subscript for industry                                                                 |                       |
 | **L**           | Leontief matrix                                                                        | commodity x commodity |
 | **L_d**         | Leontief matrix only including total domestic requirements                             | commodity x commodity |
 | **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
+| **O**           | correspondence matrix                                                                  | varies                |
 | **q**           | commodity output vector                                                                | commodities           |
-| **U**           | Use table industry transactions | commodity x industry |
-| **V**           | Make table                                                                             | industry x commodity |
-| **x**           | total final demand vector                                                              | commodities           |
+| **R**           | Redefinitions co-product ratios matrix                                                 | commodities           |
+| **s**           | scrap production vector                                                                | industries            |
+| **U**           | Use table industry transactions                                                        | commodity x industry  |
+| **V**           | Make table                                                                             | industry x commodity  |
+| **W**           | Transformation matrix                                                                  | industry x commodity  |
+| **x**           | industry output vector                                                                 | industries            |
 | **y**           | total final demand vector                                                              | commodities           |
+| y               | subscript for year                                                                     |                       |
 | ^               | symbol that indicates diagonalized form (matrix form) of a vector                      |                       |
-| '               | symbol that indicates the transposition of a matrix of vector                      |                       |
-| -               | bar over to represent a variable before transformation into CS conventions         |                       |
-| $\circ$         | open dot for a Hadamard product (elementwise) of two matrices or vectors               |                       |
+| '               | symbol that indicates the transposition of a matrix of vector                          |                       |
+| -               | bar over to represent a variable before transformation into CS conventions             |                       |
+
 
 We start with the Make table from BEA, $\bar{V}$, and the Use table from BEA, $\bar{U}$.  
 To combine the government industries we use an industry x industry correspondence matrices, $O_i$, and a commodity by commodity correspondence matrix, $O_c$, to aggregate the sector in the Make (the rows) and Use. 
@@ -158,15 +164,15 @@ Following this initial mapping to the CS schema, the _Waste and Remediation Serv
 
 The total commodity and industry output, $q$ and $x$, is derived from the Make table, where $q$ is the columns sums and $x$ is the row sums.
 Although the commodity, _Scrap_, is not part of the final sector schema, it does need to be included in order to adjust the IOT.  
-The scrap amounts produced by each industry, $r$, must be added to get the industry output.   
+The scrap amounts produced by each industry, $s$, must be added to get the industry output.   
 
 $$ q = iV $$
 
-$$ x = Vi + r $$
+$$ x = Vi + s $$
 
 We calculate the non-scrap portion of industry output, $nsr$. 
 
-$$ nsr = (x-r){x}^-1 $$
+$$ nsr = (x-s){x}^-1 $$
 
 This ratio is used to modify the commodity output normalized form of the Make matrix, also knows as the market shares matrix, to reflect an increased input of non-scrap commodities needed to fill the gap left from scrap removal in industry output. This new matrix is $W$.
 
@@ -212,6 +218,36 @@ The commodity price indices are derived from $\Pi_i$ , using the $W$ transformat
 $$ \Pi_i = O_i \bar{\Pi_i} $$
 
 $$ \Pi_i = \Pi_i W $$
+
+
+The industry and commodity gross output are also estimated for non-IOT years. 
+The BEA provides a time-series of industry output that reflects output before redefinitions, \{bar}x.
+However, during redefinitions procedure some of industry output, reflecting co-production, is reallocated to the primary industry.
+We estimate this reallocation and thus non-IOT years using the following steps.
+
+Differences in co-product output before and after redefinitions are derived as:
+
+$$ V^d_{i,c} = (\bar{V_{i,c}} - V^b_{i,c}) : i \neq c $$
+$$ V^d_{i,c} = 0 : i=c $$
+
+where $\bar{V^b}$ is the Make table before redefinitions
+
+We create a matrix $R$ of redefinition ratios
+$$ R = \hat{\bar{x}}^-1 V^d $$
+
+Now if we have industry output data for a new year, $\bar{x_y}, we can adjust this to match the redefinitions using the redefition ratios.
+
+We first estimate the equivalent of the Make difference in co-product output
+$$ V^d_y = \hat{\bar{x_y}} R$$
+
+The rows are summed and subtracted which represented removal of the co-product output from the producing industry.
+
+$$ x_y = \bar{x_y} - (V^d_y  i) $$
+
+Then the columns are summed to add the new redefined co-product output to the primary industry
+
+$$ x_y = x_y + (i V^d_y) $$
+
 
 # GHG Emissions Model and Indicators
 
