@@ -1,12 +1,7 @@
 
 # Methodology for Cornerstone U.S. National Model 
 
-Wesley Ingwersen
-Ben Young
-Mo Li
-Jorge Vendries
-Catherine Birney
-Brian Tobin
+Wesley Ingwersen, Ben Young, Mo Li, Jorge Vendries, Catherine Birney, Brian Tobin
 
 This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0.
 This methodology draws on approaches used previously in the the USEEI0 and CEDA-US models. 
@@ -129,22 +124,24 @@ Variables are defined in Table 3.
 | Variable        | Contents                                                                               | Shape                 |
 |-----------------|----------------------------------------------------------------------------------------|-----------------------|
 | **A**           | direct requirements matrix                                                             | commodity x commodity |
-| **A_d**         | domestic direct requirements matrix                                                    | commodity x commodity |
+| **$A_d$**       | domestic direct requirements matrix                                                    | commodity x commodity |
 | **B**           | direct environmental flows per commodity output matrix                                 | flow x commodity      |
 | **C**           | characterization factor matrix                                                         | indicator x flow      |
 | c               | subscript for commodity                                                                |                       |    
-| **\chi**        | non-scrap output ratio vector                                                          | industry              |    
+| d               | subscript for domestic                                                                 |                       |    
+| **$\chi$**      | non-scrap output ratio vector                                                          | industry              |    
 | **i**           | vector of 1s                                                                           | varies                |
 | i               | subscript for industry                                                                 |                       |
 | **L**           | Leontief matrix                                                                        | commodity x commodity |
-| **L_d**         | Leontief matrix only including total domestic requirements                             | commodity x commodity |
+| **$L_d$**       | Leontief matrix only including total domestic requirements                             | commodity x commodity |
 | **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
+| m               | subscript for imports                                                                  |                       |
 | **O**           | correspondence matrix                                                                  | varies                |
 | **q**           | commodity output vector                                                                | commodities           |
 | **$\Pi$**       | Price index matrix                                                                     | industry x year       |
 | **R**           | Redefinitions co-product ratios matrix                                                 | industry x commodity  |
 | **s**           | scrap production vector                                                                | industries            |
-| **\rho**        | inflation adjustment factor vector                                                     | industries            |
+| **$\rho$**      | inflation adjustment factor vector                                                     | industries            |
 | **T**           | Commodity mix matrix                                                                   | commodity x industry  |
 | **U**           | Use table industry transactions                                                        | commodity x industry  |
 | **V**           | Make table                                                                             | industry x commodity  |
@@ -155,7 +152,6 @@ Variables are defined in Table 3.
 | ^               | symbol that indicates diagonalized form (matrix form) of a vector                      |                       |
 | '               | symbol that indicates the transposition of a matrix of vector                          |                       |
 | -               | bar over to represent a variable before transformation into CS conventions             |                       |
-
 
 We start with the Make table from BEA, $\bar{V}$, and the Use table from BEA, $\bar{U}$.  
 To combine the government industries we use an industry x industry correspondence matrices, $O_i$, and a commodity by commodity correspondence matrix, $O_c$, to aggregate the sector in the Make (the rows) and Use. 
@@ -239,16 +235,19 @@ We estimate this reallocation and thus non-IOT years using the following steps.
 Differences in co-product output before and after redefinitions are derived as:
 
 $$ V^d_{i,c} = (\bar{V_{i,c}} - V^b_{i,c}) : i \neq c $$
+
 $$ V^d_{i,c} = 0 : i=c $$
 
 where $\bar{V^b}$ is the Make table before redefinitions
 
 We create a matrix $R$ of redefinition ratios
+
 $$ R = \hat{\bar{x}}^-1 V^d $$
 
 Now if we have industry output data for a new year, $\bar{x_y}, we can adjust this for redefinitions using the redefinition ratios.
 
 We first estimate the equivalent of the Make difference in co-product output
+
 $$ V^d_y = \hat{\bar{x_y}} R$$
 
 Then the rows are summed and subtracted which represented removal of the co-product output from the producing industry.
@@ -390,4 +389,6 @@ We also refer to it as a flow coefficient matrix.
 The resulting coefficients from these calculations can be interpreted as a measure of the environmental intensity of a sector in the year the environmental data are reported, but given in terms of the IO year dollar value.
 
 This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2. A discussion of this approach is found in [#16](https://github.com/cornerstone-data/methods/discussions/16).
+
+# Appendix
 
