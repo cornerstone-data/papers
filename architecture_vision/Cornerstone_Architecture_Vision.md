@@ -43,9 +43,10 @@ The key points of this vision are:
 
 Cornerstone’s goal is to develop high-quality, open sustainability data that will be the foundation for the carbon accounting and lifecycle assessment fields.
 
-For the next year, the primary function of the codebase is to assemble models and produce usable data products from them, using the [USEEIO](http://www.useeio.org) and CEDA models as starting points. Our 2026 release will be a global input-output-based model with environmental extensions (EEIO). At minimum the models will include a national or international region level of resolution, a GHG emissions environmental extension and associated indicators, and monetary transactions. However, the model should be extendable to include subregional detail, non-GHG environmental extensions and indicators, and physical flows.
-
-In addition, Cornerstone aims to publish US and state level models that are coupled with the core global model, with multiple environmental extensions and indicators, referencing USEEIO [v1](https://pubmed.ncbi.nlm.nih.gov/30344374/) and [v2](https://www.nature.com/articles/s41597-022-01293-7) as examples of the types of extensions that will be included.   
+The primary function of the codebase in the near-term is to assemble models and produce usable data products from them, using the [USEEIO](http://www.useeio.org) and [CEDA](https://watershed.com/solutions/ceda) models as starting points. 
+At minimum the models will include a national or international region level of resolution, a GHG emissions environmental extension and associated indicators, and monetary transactions. However, the model should be extendable to include subregional detail, non-GHG environmental extensions and indicators, and physical flows.
+Our first 2026 release will be a global input-output-based model with a greenhouse gas emissions environmental extension (EEIO). 
+Later, Cornerstone aims to publish US and state level models that are coupled with the core global model, with multiple environmental extensions and indicators, referencing USEEIO [v1](https://pubmed.ncbi.nlm.nih.gov/30344374/) and [v2](https://www.nature.com/articles/s41597-022-01293-7) as examples of the types of extensions that will be included.   
 
 All models should include, after model build, all the following matrices and vectors (as defined by [useeior model objects](https://github.com/cornerstone-data/useeior/blob/1565a70b7da2e50ff7ab5fc344fc0ba95f307a8a/format_specs/Model.md): **A, B, C, D, M, N, Rho, U, V and Y, Rho, Phi, Tao, x, q**) each with a commodity and location along with metadata capturing input data, assumptions, and code version used to build the model.
 
