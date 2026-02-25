@@ -137,16 +137,16 @@ Variables are defined in Table 3.
 | **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
 | m               | subscript for imports                                                                  |                       |
 | **O**           | correspondence matrix                                                                  | varies                |
-| **q**           | commodity output vector                                                                | commodities           |
+| **q** or **Q**  | commodity output vector or matrix                                                      | commodities or commodities x year          |
 | **$\Pi$**       | Price index matrix                                                                     | industry x year       |
 | **R**           | Redefinitions co-product ratios matrix                                                 | industry x commodity  |
 | **s**           | scrap production vector                                                                | industries            |
 | **$\rho$**      | inflation adjustment factor vector                                                     | industries            |
 | **T**           | Commodity mix matrix                                                                   | commodity x industry  |
 | **U**           | Use table industry transactions                                                        | commodity x industry  |
-| **V^**           | Make table                                                                             | industry x commodity  |
+| **V^**           | Make table                                                                            | industry x commodity  |
 | **W**           | Transformation matrix                                                                  | industry x commodity  |
-| **x**           | industry output vector                                                                 | industries            |
+| **x** or **X**  | industry output vector or matrix                                                       | industries or industries x year           |
 | **y**           | total final demand vector                                                              | commodities           |
 | y               | subscript for year                                                                     |                       |
 | ^               | symbol that indicates diagonalized form (matrix form) of a vector                      |                       |
@@ -268,7 +268,7 @@ $$ T = \hat{\chi}^{-1} V' \hat{x}^{-1} $$
 
 $$ q = T x $$
 
-The estimated industry output is assembled into a $X$ matrix of industry output by year.
+The estimated industry output for all years is assembled into a $X$ matrix of industry output by year and commodity output into a $Q$ matrix.
 
 # GHG Emissions Model and Indicators
 
