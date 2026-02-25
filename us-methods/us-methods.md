@@ -4,6 +4,7 @@
 Wesley Ingwersen, Ben Young, Mo Li, Jorge Vendries, Catherine Birney, Brian Tobin
 
 This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0.
+This U.S. model is intended to meet the model requirements for the US national component described in the [v1 model requirements](https://github.com/cornerstone-data/methods/blob/main/ModelRequirements.md).
 This methodology draws on approaches used previously in the the USEEI0 and CEDA-US models. 
 The Cornerstone team first reviewed and identified all the differences between reference USEEIO and CEDA-US models, and the systematically assessed the differences both theoretically and quantitatively, as relevant. 
 That work is captured in a discussions and related scripts found in the [cornerstone-data/methods](https://github.com/cornerstone-data/methods) repository. References to those discussions are provided herein.
