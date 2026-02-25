@@ -48,7 +48,7 @@ At minimum the models will include a national or international region level of r
 Our first 2026 release will be a global input-output-based model with a greenhouse gas emissions environmental extension (EEIO). 
 Later, Cornerstone aims to publish US and state level models that are coupled with the core global model, with multiple environmental extensions and indicators, referencing USEEIO [v1](https://pubmed.ncbi.nlm.nih.gov/30344374/) and [v2](https://www.nature.com/articles/s41597-022-01293-7) as examples of the types of extensions that will be included.   
 
-All models should include, after model build, all the following matrices and vectors (as defined by [useeior model objects](https://github.com/cornerstone-data/useeior/blob/1565a70b7da2e50ff7ab5fc344fc0ba95f307a8a/format_specs/Model.md): **A, B, C, D, M, N, U, V, Y, Rho, Phi, Tau, x, q**, for each commodity and region, along with metadata capturing input data, assumptions, and code version used to build the model.
+All models should include, after model build, all the following matrices and vectors (as defined by [useeior model objects](https://github.com/cornerstone-data/useeior/blob/1565a70b7da2e50ff7ab5fc344fc0ba95f307a8a/format_specs/Model.md)): **A, B, C, D, M, N, U, V, Y, Rho, Phi, Tau, x, q**, for each commodity and region, along with metadata capturing input data, assumptions, and code version used to build the model.
 
 Cornerstone's technical architecture will serve the generation of the data artifacts above, and hopefully others in the future. We develop our data assets via open sourced code (as opposed to spreadsheets, for example), for the following reasons in priority order:
 
