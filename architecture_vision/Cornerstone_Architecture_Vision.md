@@ -62,9 +62,10 @@ Note: (3) is the lowest priority because Cornerstone’s mission is first and fo
 
 # Programming language choice
 
-We choose **Python** as our language of choice due to its prevalence in the field of industrial ecology and its availability of modern frameworks and libraries to perform data extracting and transforming. Python offers industry-standard open source libraries for: data science, typing, schemas, testing, data storage access, and data pipelines orchestration.
+We choose **Python** as our programming language of choice due to its prevalence in the field of industrial ecology and the modern frameworks and libraries available in the language to perform data extracting and transforming. Python offers industry-standard open source libraries for: data science, typing, schemas, testing, data storage access, and data pipeline orchestration.
 
-This architecture vision doesn’t get into which standards or preferred distributions and libraries within Python we’ll pick. Cornerstone should decide on that as a group later on, and ensure those less familiar with Python are onboarded onto the best practices.
+This architecture vision does not get into which standards or preferred distributions and libraries within Python we will pick.
+Cornerstone should decide on that as a group later on, and ensure those less familiar with Python are onboarded onto the best practices.
 
 # Code architecture
 
@@ -123,7 +124,7 @@ The existing EEIO code from both parties resemble immature [ETL (extract, transf
 
 ### **Monorepo vs. polyrepo**
 
-It would be possible but difficult to execute on this across multiple repositories (a polyrepo), so this document’s position is that the ETL should follow a **monorepo** approach, such that he code lives in one repository. A [monorepo](https://en.wikipedia.org/wiki/Monorepo) allows us to proliferate and enforce new patterns and tooling across the data pipeline, and is the most convenient way for Cornerstone contributors and external members to run the pipeline end-to-end. A monorepo ETL does not prevent us from publishing intermediate and final data artifacts for external consumption.
+It would be possible but difficult to execute on this across multiple repositories (a polyrepo), so our position is that the ETL should follow a **monorepo** approach, such that the code lives in one repository. A [monorepo](https://en.wikipedia.org/wiki/Monorepo) allows us to proliferate and enforce new patterns and tooling across the data pipeline, and is the most convenient way for Cornerstone contributors and external members to run the pipeline end-to-end. A monorepo ETL does not prevent us from publishing intermediate and final data artifacts for external consumption.
 
 ## **Mapping current architecture to future architecture**
 
@@ -167,11 +168,11 @@ This vision is also exciting from a forward-looking perspective, because it unlo
 
 * **Easily develop new data assets beyond EEIO**
 
-* A strong foundation of ETL tools will allow us to quickly spin-up data development efforts beyond standard EEIO that are mature and robust from day one.
+  * A strong foundation of ETL tools will allow us to quickly spin-up data development efforts beyond standard EEIO that are mature and robust from day one.
 
-  * E.g., If we develop a process-based LCA dataset, we’ll have the same out-of-the-box helpers for data extraction, monitoring workflows, kicking off pipelines, versioning, etc.
+    * E.g., If we develop a process-based LCA dataset, we’ll have the same out-of-the-box helpers for data extraction, monitoring workflows, kicking off pipelines, versioning, etc.
 
-  * Future data assets, such as hybrid EEIO and process-based LCAs may share sources of primary data. We can easily share extraction functions to do so (rather than sharing a data store, which risks data staleness).
+    * Future data assets, such as hybrid EEIO and process-based LCAs may share sources of primary data. We can easily share extraction functions to do so (rather than sharing a data store, which risks data staleness).
 
 * **Easily onboard technical contributors**
 
