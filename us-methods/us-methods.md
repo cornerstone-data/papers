@@ -1,7 +1,17 @@
 
 # Methodology for Cornerstone U.S. National Model 
 
-Wesley Ingwersen, Ben Young, Mo Li, Jorge Vendries, Catherine Birney, Brian Tobin
+Wesley Ingwersen, [WesIngwersen](https://github.com/orgs/cornerstone-data/people/WesIngwersen)
+
+Ben Young, [bl-young](https://github.com/orgs/cornerstone-data/people/bl-young)
+
+Mo Li, [MoLi7](https://github.com/orgs/cornerstone-data/people/MoLi7)
+
+Jorge Vendries, [jvendries](https://github.com/orgs/cornerstone-data/people/jvendries)
+
+Catherine Birney, [catherinebirney](https://github.com/orgs/cornerstone-data/people/catherinebirney)
+
+Brian Tobin, [briantobin-99](https://github.com/orgs/cornerstone-data/people/briantobin-99)
 
 This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0.
 This U.S. model is intended to meet the model requirements for the US national component described in the [v1 model requirements](https://github.com/cornerstone-data/methods/blob/main/ModelRequirements.md).
