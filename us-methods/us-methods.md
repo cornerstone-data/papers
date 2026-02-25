@@ -144,7 +144,7 @@ Variables are defined in Table 3.
 | **$\rho$**      | inflation adjustment factor vector                                                     | industries            |
 | **T**           | Commodity mix matrix                                                                   | commodity x industry  |
 | **U**           | Use table industry transactions                                                        | commodity x industry  |
-| **V**           | Make table                                                                             | industry x commodity  |
+| **V^**           | Make table                                                                             | industry x commodity  |
 | **W**           | Transformation matrix                                                                  | industry x commodity  |
 | **x**           | industry output vector                                                                 | industries            |
 | **y**           | total final demand vector                                                              | commodities           |
@@ -198,6 +198,7 @@ $$ L = (I - A)^{-1} $$
 
 We also prepare domestic versions of the $A$ matrix.  This starts with using a version of the industry transactions in the Use table only with uses of domestic commodities, also known as the import matrix, $U_m$. 
 This has to be conformed to the CS model schema through an aggregation matrix.
+
 $$ U_m = O_c \bar{U_m} O_i' $$
 
 Then we subtracting it from from the Use matrix to estimate a domestic Use table, $U_d$.
@@ -234,29 +235,29 @@ We estimate this reallocation and thus non-IOT years using the following steps.
 
 Differences in co-product output before and after redefinitions are derived as:
 
-$$ V^d_{i,c} = (\bar{V_{i,c}} - V^b_{i,c}) : i \neq c $$
+$$ V^*_{i,c} = (\bar{V_{i,c}} - V^b_{i,c}) : i \neq c $$
 
-$$ V^d_{i,c} = 0 : i=c $$
+$$ V^*_{i,c} = 0 : i=c $$
 
 where $\bar{V^b}$ is the Make table before redefinitions
 
 We create a matrix $R$ of redefinition ratios
 
-$$ R = \hat{\bar{x}}^-1 V^d $$
+$$ R = \hat{\bar{x}}^-1 V^* $$
 
 Now if we have industry output data for a new year, $\bar{x_y}, we can adjust this for redefinitions using the redefinition ratios.
 
 We first estimate the equivalent of the Make difference in co-product output
 
-$$ V^d_y = \hat{\bar{x_y}} R$$
+$$ V^*_y = \hat{\bar{x_y}} R$$
 
 Then the rows are summed and subtracted which represented removal of the co-product output from the producing industry.
 
-$$ x_y = \bar{x_y} - (V^d_y  i) $$
+$$ x_y = \bar{x_y} - (V^*_y  i) $$
 
 The the columns are summed to add the new redefined co-product output to the primary industry
 
-$$ x_y = x_y + (i V^d_y) $$
+$$ x_y = x_y + (i V^*_y) $$
 
 Note the final equation hold when commodity and industry indices of the Make table are identical as the total of the column sum is a commodity total and thus
 has to be added to the primary industry.
