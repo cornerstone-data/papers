@@ -244,9 +244,9 @@ where $\bar{V^b}$ is the Make table before redefinitions
 
 We create a matrix $R$ of redefinition ratios
 
-$$ R = \hat{\bar{x}}^-1 V^* $$
+$$ R = \hat{\bar{x}}^{-1} V^* $$
 
-Now if we have industry output data for a new year, $\bar{x_y}, we can adjust this for redefinitions using the redefinition ratios.
+Now if we have industry output data for a non-IOT year, $\bar{x_y}$, we can adjust this for redefinitions using the redefinition ratios.
 
 We first estimate the equivalent of the Make difference in co-product output
 
