@@ -86,7 +86,7 @@ However there are some cases in which industries or commodities are removed, com
 Those cases are described here. 
 
 ### Combination of Industries
-Government industries that produce that same commodities as private industries are aggregated.
+Government industries that produce the same commodities as private industries are aggregated.
 _Federal electric utilities_ (BEA S00101) and _State and local government electric utilities_ (BEA S00202) are included in _Electric power generation, transmission, and distribution_ because all produce _Electricity_. 
 _State and local government passenger transit_ (BEA S00201) is included in _Transit and ground passenger transportation_ (BEA 485000).
 These aggregates are represented with the private industry name and code because this is also the code for the primary product they are producing. 
