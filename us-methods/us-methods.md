@@ -107,7 +107,7 @@ The commodity _Scrap_ (BEA S00401) represents discarded materials but is not spe
 
 ### Addition of Industries and Commodities - Waste Sector
 
-The _Waste and Remediation_ (BEA 562000) industry and associated commodity is removed and and replaced with more specific industries and commodities. 
+The _Waste and Remediation_ (BEA 562000) industry and associated commodity is replaced with more specific industries and commodities. 
 For each new industry, new commodity is created. 
 
 ### Table 2. Waste Sectors
