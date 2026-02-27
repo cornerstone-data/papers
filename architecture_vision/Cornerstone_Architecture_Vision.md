@@ -132,7 +132,7 @@ We can first map the extract, transform, and publish buckets into the high-level
 ![High-level code organization for the ETL codebase.](etl.png)
 Figure 2. High-level organization of Cornerstone’s future architecture.
 
-Digging a level deeper, we can then categorize existing code into one of these three buckets or the `Shared platform utilities` bucket (Figure 3). Future code we’d want to add as Cornerstone expands can also be easily categorized.
+Digging a level deeper, we can then categorize existing code into one of these three buckets or the `Shared platform utilities` bucket (Figure 3). Future code we would want to add as Cornerstone expands can also be easily categorized.
 
 ![Diagram of Cornerstone's ETL vision, organizing current and future modules into the extract, transform, load steps.](future_arch.png)
 Figure 3. Cornerstone’s future architecture with current and future modules organized into the extract, transform, load steps.
@@ -183,8 +183,8 @@ This vision is also exciting from a forward-looking perspective, because it unlo
 
 * **Easily show non-technical individuals how our models are derived**
 
-  * Non-technical contributors can use code dependency visualizers such as [Basic](https://pycallgraph.readthedocs.io/en/master/examples/basic.html#generated-image) to understand the data flows and dependencies visually. This enables them to engage with our work and verify their understanding in ways USEEIO and CEDA don’t offer today. Based on demand, we can evolve this into something more mature (for inspiration, see the [Dagster web UI docs (click on the `Global asset lineage` tab)](https://docs.dagster.io/guides/operate/webserver?#assets)).
+  * Non-technical contributors can use code dependency visualizers such as [Basic](https://pycallgraph.readthedocs.io/en/master/examples/basic.html#generated-image) to understand the data flows and dependencies visually. This enables them to engage with our work and verify their understanding in ways USEEIO and CEDA do not offer today. Based on demand, we can evolve this into something more mature (for inspiration, see the [Dagster web UI docs (click on the `Global asset lineage` tab)](https://docs.dagster.io/guides/operate/webserver?#assets)).
 
 # Conclusion
 
-This doc outlines a vision for Cornerstone’s technical architecture and lays out a high-level implementation plan for 2026\. Our top priorities for Cornerstone’s architecture is to accelerate the development of high-quality sustainability datasets. The best way to do this is to standardize our development in Python, in a monorepo, and following an ETL framework. Doing so will keep our 2026 EEIO development organized while setting us up for an exciting future where Cornerstone has a vibrant ecosystem of datasets and contributors.
+This document outlines a vision for Cornerstone’s technical architecture and lays out a high-level implementation plan for 2026\. Our top priority for Cornerstone’s architecture is to accelerate the development of high-quality sustainability datasets. The best way to do this is to standardize our development in Python in a monorepo, and to follow an ETL framework. Doing so will keep our 2026 EEIO development organized while setting us up for an exciting future where Cornerstone has a vibrant ecosystem of datasets and contributors.
