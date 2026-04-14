@@ -26,7 +26,7 @@ Additional steps in the preparation of the EEIO model occur in concert with the 
 
 # Data Source and Procedures for Construction of IOTs
 
-Data are requiring for building the economic IOTs as well as for linking the environmental data to build the EEIO extensions.
+Data are requiring for building the economic IOTs as well as for later use in linking the environmental data to build the EEIO extensions.
 
 ## Data Inputs to IOTs
 The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
@@ -46,7 +46,7 @@ The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
 
 The benchmark Make and Use matrices from the BEA, provided at 5 year intervals, were the fundamental US IOT inputs to USEEIO and CEDA models.
 The 2017 tables are the most recent official release.
-These tables are prepared in producer and purchaser price, as well as "Before redefinitions" (BR) and "After Redefinitions" (AR).
+These tables are prepared in producer and purchaser price, as well as "Before Redefinitions" (BR) and "After Redefinitions" (AR).
 We use the producer price version as was done previously both for USEEIO and CEDA. 
 The purchaser price version provide less transparency in the input requirements because for each value in the Use table for an industries' use of a commodity includes not just the value of the commodity used but also the value of added wholesale, retail and transportation costs.
 The producer price version is used to provide more transparency.
@@ -61,7 +61,7 @@ The following list represents most of the redefinitions:
 - Trade activities in non-trade industries are redefined to trade. Redefinitions
 are not made between wholesale and retail trade.
 - Rental activities in non-rental industries are redefined to real estate and rental industries.
-- Service activities in non-service industries are redefined to services."
+- Service activities in non-service industries are redefined to services.
 
 The redefinitions shift around industry output but commodity output stays the same.
 In the AR Use table, uses of commodities are additionally moved away from industries where commodity output is removed, and to the industries where commodity output was added.
