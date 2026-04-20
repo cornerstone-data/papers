@@ -13,7 +13,7 @@ Catherine Birney, [catherinebirney](https://github.com/orgs/cornerstone-data/peo
 
 Brian Tobin, [briantobin-99](https://github.com/orgs/cornerstone-data/people/briantobin-99)
 
-This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0.
+This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0, and pre-release versions.
 This U.S. model is intended to meet the model requirements for the US national component described in the [v1 model requirements](https://github.com/cornerstone-data/methods/blob/main/ModelRequirements.md).
 This methodology draws on approaches used previously in the the USEEI0 and CEDA-US models. 
 The Cornerstone team first reviewed and identified all the differences between reference USEEIO and CEDA-US models, and the systematically assessed the differences both theoretically and quantitatively, as relevant. 
@@ -336,7 +336,7 @@ No. | Name
 A-5 | 2023 Energy Consumption Data and $CO_2$  Emissions from Fossil Fuel Combustion by Fuel Type
 A-90 | HFC Emissions from Transportation Sources (MMT $CO_2$  Eq.)
 
-## Sector Attribution Model
+## Sector Attribution Model (SAM)
 
 In the GHGI, U.S. GHG emissions are typically reported by emitting activity and gas.
 In some cases, those reporting activities align directly with an industry included in the model.
@@ -372,6 +372,16 @@ No. | Name
 2-2 | [Energy Used as a Nonfuel (Feedstock)](https://www.eia.gov/consumption/manufacturing/data/2022/xls/Table2_2.xlsx)  By Manufacturing Industry and Region (trillion Btu)
 3-2 | [Energy Consumption as a Fuel](https://www.eia.gov/consumption/manufacturing/data/2022/xls/Table3_2.xlsx) By Manufacturing Industry and Region (trillion Btu)
 
+
+## Global Warming Potential Indicator
+
+The SAM provides data for emissions of individual gas (e.g. methane) by industries (with one exception listed above).  
+These gases each have different potential to cause radiative forcing which is the primary way in which these gases cause global warming.
+Global warming potentials (GWPs) are factors that relate GHGs to the global warming potential they have over a given time frame by estimating this potential in kg of $CO_2$  equivalent ($CO_2$ e). 
+We use the most GWPs for a 100 yr time horizon from the IPCC 6th Assessment Report (AR6) that are matched to the FEDEFL flows from the [IPCC AR4, AR5, and AR6 20-, 100-, and 500-year GWPs](https://doi.org/10.23719/1529821) dataset. 
+These GWPs become the indicator used in the model.
+We conform these into a vector, $c$, of GWPs per gas.
+
 # Creating the Environmentally-Extended IO model
 
 With the economic IOTs, GHG data, and indicators prepared, the data can be combined to form the EEIO model.
@@ -381,15 +391,10 @@ The first step is to create the matrix of direct GHG emissions per commodity, $B
 This requires some adjustments due to the differences in data years of the IOT and the GHG data and the need to align the data with commodities and not industries. 
 The original relation between the environmental data in the form of national totals by industry, $E$, and the model economic data uses the model industry output, as described in the following equation.
 
-$$ B_{I,y} = E_{I,z}\hat{x}^{-1}_{ey,by} $$ 
+$$ B_{i} = E_{i}\hat{x}^{-1} $$ 
 
-where $E_I$ is a emission x industry matrix of national totals of each flow by industry sector in emission year $ey$, and $x_{ey,by}$ is a vector of emission year gross output by industry given in base year, $by$, dollars. 
-The industries in the $E$ columns match the industries in $x$.
-
-For $x$ to be in year $by$ USD, the unit of the IOTs, $x$ must first be price adjusted using the same price index ratios for industries given above. 
-Note that these are the industry price indices rather than the commodity price industries that make up $\rho$. 
-
-$$ x_{ey,by} = x_{ey,ey} \frac{\Pi_{i,by}}{\Pi_{i,ey}} $$ 
+where $E_i$ is a emission x industry matrix of national totals of each flow by industry sector in emission year, and $x$ is a vector of gross output by industry given in dollars. 
+The industries in the $E$ columns match the industries in $x$ and the year of the data are the same.
 
 The final $B$ matrix is prepared using the following equation:
 
@@ -398,9 +403,29 @@ $$ B = B_i W $$
 $B$ is in flow x commodity form after transforming $B_i$ into this form with the transformation matrix.
 We also refer to it as a flow coefficient matrix. 
 
-The resulting coefficients from these calculations can be interpreted as a measure of the environmental intensity of a sector in the year the environmental data are reported, but given in terms of the IO year dollar value.
+The resulting coefficients from these calculations can be interpreted as a measure of the environmental intensity of a sector in the year the environmental data are reported.
 
-This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2. A discussion of this approach is found in [#16](https://github.com/cornerstone-data/methods/discussions/16).
+This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2 without the price adjustment.
+A discussion of this approach is found in [#16](https://github.com/cornerstone-data/methods/discussions/16).
+
+A series of coefficient matrices are provided that are products of combining more than one of the economic, physical flow, and indicator components. 
+The direct impacts of a sector in a given indicator unit per model dollar year, can be calculated with the following equation.
+$d$ is an indicator x sector matrix and contains in each column the direct $CO_2$ e result per 1 USD output of the sector, also known as an impact result.
+
+$$ d = cB $$ 
+
+With the flow coefficient matrix $B$ and the total requirements matrix $L$, the matrix $M$ which contains the direct and indirect flow coefficients can be calculated with the following equation. 
+
+$$ M = BL $$ 
+
+The matrix $M$ is a flow x sector matrix and contains in each row the direct plus indirect flows per 1 USD output of the sector in column $by$ dollars in producer price.
+
+With the direct impacts $d$ and the total requirements $L$, the matrix $N$ which contains the direct plus indirect impact coefficients can be calculated via the following equation. 
+
+$$ n = dL $$ 
+
+$n$ combines each economic, flow and indicator component. $n$ is an indicator x sector vector and contains the direct and indirect impact result per 1 USD output of commodity in $by$ dollars in producer price.
+
 
 # Appendix - Cornerstone Schema
 
