@@ -163,7 +163,7 @@ Variables are defined in Table 3.
 | ^               | symbol that indicates diagonalized form (matrix form) of a vector                      |                       |
 | '               | symbol that indicates the transposition of a matrix of vector                          |                       |
 | -               | bar over to represent a variable before transformation into CS conventions             |                       |
-| \dot               | cell-by-cell multiplication (Haddard product)             |                       |
+| \circ           | cell-by-cell multiplication (Haddard product)                                          |                       |
 
 We start with the Make table from BEA, $\bar{V}$, and the Use table from BEA, $\bar{U}$.  
 To combine the government industries we use an industry x industry correspondence matrices, $O_i$, and a commodity by commodity correspondence matrix, $O_c$, to aggregate the sector in the Make (the rows) and Use. 
@@ -251,11 +251,11 @@ A summary level A_s matrix is derived for the target year using the same methods
 
 The summary level $A_{s,t}$ is transformed into the detail Cornerstone schema using a correspondence matrix $O_ds_c$ as follows:
 
-$$ A"_t = O_ds_c A_{s,t} O_ds_c' $$
+$$ A"_t = O_{ds_c} A_{s,t} O_{ds_c}' $$
 
 The product is used to modify each cell of the existing $A$ matrix using the following equation. 
 
-$$ A_t = A"_t \dot A $$  
+$$ A_t = A"_t \circ A $$  
 
 The new $$A_t$$ is used for further model creation as described below. 
 
