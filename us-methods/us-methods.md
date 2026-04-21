@@ -128,31 +128,29 @@ This results in a net addition of 6 industries and 6 commodities. See discussion
 ## Treatment of Economic Data and IOT Construction
 
 We use matrix algebra to describe the treatment of the economic data to construct the US IOT. 
-Variables are defined in Table 3. 
+Variables are defined in Table 3. Matrices and vectors are bolded (except for Greek letters which do not bold in github), subscripts or 
 
 ### Table 3. Variables.
 
 | Variable        | Contents                                                                               | Shape                 |
 |-----------------|----------------------------------------------------------------------------------------|-----------------------|
 | **A**           | direct requirements matrix                                                             | commodity x commodity |
-| **$A_d$**       | domestic direct requirements matrix                                                    | commodity x commodity |
 | **B**           | direct environmental flows per commodity output matrix                                 | flow x commodity      |
 | **C**           | characterization factor matrix                                                         | indicator x flow      |
 | c               | subscript for commodity                                                                |                       |    
 | d               | subscript for domestic                                                                 |                       |    
-| **$\chi$**      | non-scrap output ratio vector                                                          | industry              |    
+| $\chi$      | non-scrap output ratio vector                                                          | industry              |    
 | **i**           | vector of 1s                                                                           | varies                |
 | i               | subscript for industry                                                                 |                       |
 | **L**           | Leontief matrix                                                                        | commodity x commodity |
-| **$L_d$**       | Leontief matrix only including total domestic requirements                             | commodity x commodity |
 | **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
 | m               | subscript for imports                                                                  |                       |
 | **O**           | correspondence matrix                                                                  | varies                |
 | **q** or **Q**  | commodity output vector or matrix                                                      | commodities or commodities x year          |
-| **$\Pi$**       | Price index matrix                                                                     | industry x year       |
+| $\Pi$       | Price index matrix                                                                     | industry x year       |
 | **R**           | Redefinitions co-product ratios matrix                                                 | industry x commodity  |
 | **s**           | scrap production vector                                                                | industries            |
-| **$\rho$**      | inflation adjustment factor vector                                                     | industries            |
+| $\rho$      | inflation adjustment factor vector                                                     | industries            |
 | **T**           | Commodity mix matrix                                                                   | commodity x industry  |
 | **U**           | Use table industry transactions                                                        | commodity x industry  |
 | **V^**           | Make table                                                                            | industry x commodity  |
@@ -199,7 +197,7 @@ This vector is used to modify the commodity output normalized form of the Make m
 $$ W = \hat{\chi}^{-1} V\hat{q}^{-1} $$  
 
 The Use table is normalized by industry output and then post-multiplied by $W$ to get $A$ in commodity by commodity format.
-This method for creating the $A$ matrix is based on the _industry- technology_ assumption, wherein the manufacture of the primary and any secondary commodities by an industry uses the same production requirements, and the commodity requirements are based therefore on the mix of industries that produce that commodity, weighted by their relative share of total commodity output. See [Input Output Analysis by R. Miller and P. Blair 2022](https://doi.org/10.1017/9781108676212).
+This method for creating the $A$ matrix is based on the _industry-technology_ assumption, wherein the manufacture of the primary and any secondary commodities by an industry uses the same production requirements, and the commodity requirements are based therefore on the mix of industries that produce that commodity, weighted by their relative share of total commodity output. See [Input Output Analysis by R. Miller and P. Blair 2022](https://doi.org/10.1017/9781108676212).
 
 $$ A = U\hat{x}^{-1}W $$
 
@@ -220,6 +218,12 @@ $$ U_d = U - U_m $$
 Then it can be used to derive the domestic version of the direct requirements, $A_d$.
 
 $$ A_d= U_d\hat{x}^{-1}W $$
+
+The imports equivalent of ${A_d}$, ${A_m}$  is derived in the same manner but using the import matrix. 
+
+$$ A_m= U_m\hat{x}^{-1}W $$
+
+### Inflation Adjustment Factors
 
 We also develop price adjustment factors to adjust for inflation, $\rho$.
 
@@ -247,9 +251,9 @@ The $A$ matrix derived above needs to be further adjusted to the model target ye
 
 To perform this adjustment we draw on more recent Make and Use tables at a more aggregate level, what is referred to by BEA as the summary level. 
 
-A summary level A_s matrix is derived for the target year using the same methods for deriving the A matrix described above.
+A summary level $A_{s,t}$ matrix is derived for the target year using the same methods for deriving the A matrix described above.
 
-The summary level $A_{s,t}$ is transformed into the detail Cornerstone schema using a correspondence matrix $O_ds_c$ as follows:
+The summary level matrix is transformed into the detail Cornerstone schema using a detail-to-summary commodity correspondence matrix $O_{ds_c}$ as follows:
 
 $$ A"_t = O_{ds_c} A_{s,t} O_{ds_c}' $$
 
