@@ -336,9 +336,9 @@ $y_m$ is calculated by taking the sum of imports for intermediate use from the t
 
 $$ y_m = m - i U_m $$
 
-All y values are first estimated in reference to the detail table year, but can be inflated to the target year using rho, as in:
+All $y$ values are first estimated in reference to the detail table year, but can be inflated to the target year using $\rho$, as in:
 
-$$ y_{ty} = y \circ rho^{-1} $$ 
+$$ y_{ty} = y \circ \rho^{-1} $$ 
 
 
 # GHG Emissions Model and Indicators
