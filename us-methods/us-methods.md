@@ -468,7 +468,8 @@ We also refer to it as a flow coefficient matrix.
 
 The resulting coefficients from these calculations can be interpreted as a measure of the environmental intensity of a sector in the year the environmental data are reported.
 
-This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2 without the price adjustment.
+This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2 without the price adjustment, as $B$ is already in units of flow per target year $ty$ dollar.
+
 A discussion of this approach is found in [#16](https://github.com/cornerstone-data/methods/discussions/16).
 
 A series of coefficient matrices are provided that are products of combining more than one of the economic, physical flow, and indicator components. 
@@ -487,7 +488,7 @@ With the direct impacts $d$ and the total requirements $L$, the matrix $N$ which
 
 $$ n = dL $$ 
 
-$n$ combines each economic, flow and indicator component. $n$ is an indicator x sector vector and contains the direct and indirect impact result per 1 USD output of commodity in $by$ dollars in producer price.
+$n$ combines each economic, flow and indicator component. $n$ is an indicator x sector vector and contains the direct and indirect impact result per 1 USD output of commodity in $ty$ dollars in producer price.
 
 
 # Appendix - Cornerstone Schema
