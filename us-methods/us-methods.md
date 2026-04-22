@@ -150,6 +150,7 @@ Variables are defined in Table 3. Matrices and vectors are bolded (except for Gr
 | **E**           | total flows by industry matrix                                                         | flow x industry       |
 | $\chi$          | non-scrap output ratio vector                                                          | industry              |    
 | g               | subscript for government                                                               |                       |
+| $\delta$        | subscript for change in inventories                                                    |                       |
 | h               | subscript for households                                                               |                       |
 | **i**           | vector of 1s                                                                           | varies                |
 | i               | subscript for industry                                                                 |                       |
@@ -363,7 +364,7 @@ Table 4 has a list of the data sources used in the emissions model.
 | Name                                                       | Creator | Sources | DataYears |
 |:-----------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------|:----------|
 | GHG Inventory | EPA | [ Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks) | 2023 |
-| COA Cropland   | USDA | [Department of Agriculture Census of Agriculture](https://www.eia.gov/consumption/manufacturing/) | 2022 |
+| COA Cropland   | USDA | [Department of Agriculture Census of Agriculture](https://www.nass.usda.gov/AgCensus/) | 2022 |
 | MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey](https://www.eia.gov/consumption/manufacturing/) | 2022 |
 
 The US GHG Inventory (GHGI) is an authoritative estimate of national GHG emissions and sinks for the U.S. that includes estimates of emissions by broad sectors as specific activities. 
