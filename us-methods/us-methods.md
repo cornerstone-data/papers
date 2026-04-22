@@ -153,7 +153,7 @@ Variables are defined in Table 3. Matrices and vectors are bolded (except for Gr
 | **L**           | Leontief matrix                                                                        | commodity x commodity |
 | **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
 | m or **m**      | subscript or vector for imports                                                        | commodities           |
-| **n**           | direct + indirect emissions matrix, aka emission factors                                        | GHGs in kg CO2e x commodity      |
+| **n**           | direct + indirect emissions vector, aka emission factors                                        | GHGs in kg CO2e x commodity      |
 | **O**           | correspondence matrix                                                                  | varies                |
 | **q** or **Q**  | commodity output vector or matrix                                                      | commodities or commodities x year          |
 | $\Pi$           | Price index matrix                                                                     | industry x year       |
