@@ -343,7 +343,9 @@ $$ y_{ty} = y \circ rho^{-1} $$
 
 # GHG Emissions Model and Indicators
 
-The GHG emissions model is largely based on previously [GHG attribution models led by EPA](http://doi.org/10.1016/j.dib.2024.110173) using the [FLOWSA python package](http://doi.org/10.1016/j.dib.2024.110173).
+The GHG emissions model is largely based on previously [GHG attribution models led by EPA](http://doi.org/10.1016/j.dib.2024.110173) using the [FLOWSA python package](http://doi.org/10.1016/j.dib.2024.110173). 
+
+Data are primarily for 2023 U.S. GHG emissions.
 
 ## Data Sources
 
@@ -451,7 +453,7 @@ The first step is to create the matrix of direct GHG emissions per commodity, $B
 This requires some adjustments due to the differences in data years of the IOT and the GHG data and the need to align the data with commodities and not industries. 
 The original relation between the environmental data in the form of national totals by industry, $E$, and the model economic data uses the model industry output, as described in the following equation.
 
-$$ B_{i} = E_{i}\hat{x}^{-1} $$ 
+$$ B_{i} = E_{i}\hat{X_{ty}}^{-1} $$ 
 
 where $E_i$ is a emission x industry matrix of national totals of each flow by industry sector in emission year, and $x$ is a vector of gross output by industry given in dollars. 
 The industries in the $E$ columns match the industries in $x$ and the year of the data are the same.
