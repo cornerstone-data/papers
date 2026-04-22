@@ -13,14 +13,14 @@ Catherine Birney, [catherinebirney](https://github.com/orgs/cornerstone-data/peo
 
 Brian Tobin, [briantobin-99](https://github.com/orgs/cornerstone-data/people/briantobin-99)
 
-This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v1.0, and pre-release versions.
-This U.S. model is intended to meet the model requirements for the US national component described in the [v1 model requirements](https://github.com/cornerstone-data/methods/blob/main/ModelRequirements.md).
+This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v0.2, as is implemented in [bedrock](https://github.com/cornerstone-data/bedrock).
+This U.S. model is a work in progress towards meeting the model requirements for the US national component described in the [v1 model requirements](https://github.com/cornerstone-data/methods/blob/main/ModelRequirements.md).
 This methodology draws on approaches used previously in the the USEEIO and CEDA-US models. 
 The Cornerstone team first reviewed and identified all the differences between reference USEEIO and CEDA-US models, and the systematically assessed the differences both theoretically and quantitatively, as relevant. 
 That work is captured in a discussions and related scripts found in the [cornerstone-data/methods](https://github.com/cornerstone-data/methods) repository.
  References to those discussions are provided herein.
 
-This version of the model provides matrices with currency units in 2023 USD.
+This version of the model provides matrices and resulting emission factors with currency units in 2023 USD in producer price.
 
 The description of the methodology is split into three sections: (1) the economic data and steps used to forming the basis economic input-output table (IOT) matrices and associated economic datasets;
 (2) the greenhouse gas emissions (GHG) model and the approach used to estimate industry GHG totals and indicators used to convert them into CO2 equivalents; and (3) the integration of the economic and environmental data to form model result matrices of GHG emissions per dollar. 
@@ -343,7 +343,7 @@ $$ y_{ty} = y \circ rho^{-1} $$
 
 # GHG Emissions Model and Indicators
 
-The GHG emissions model is largely based on previously GHG attribution models led by EPA [cite Young and Ingwersen] using the FLOWSA python package [cite Birney].
+The GHG emissions model is largely based on previously [GHG attribution models led by EPA](http://doi.org/10.1016/j.dib.2024.110173) using the [FLOWSA python package](http://doi.org/10.1016/j.dib.2024.110173).
 
 ## Data Sources
 
