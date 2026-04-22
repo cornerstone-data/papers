@@ -15,21 +15,22 @@ Brian Tobin, [briantobin-99](https://github.com/orgs/cornerstone-data/people/bri
 
 This paper describes the methodological approach to building the detailed United States national environmentally-extended input-output (EEIO) model that is to be integrated into the Cornerstone (CS) global EEIO model, v0.2, as is implemented in [bedrock](https://github.com/cornerstone-data/bedrock).
 This U.S. model is a work in progress towards meeting the model requirements for the US national component described in the [v1 model requirements](https://github.com/cornerstone-data/methods/blob/main/ModelRequirements.md).
-This methodology draws on approaches used previously in the the USEEIO and CEDA-US models. 
-The Cornerstone team first reviewed and identified all the differences between reference USEEIO and CEDA-US models, and the systematically assessed the differences both theoretically and quantitatively, as relevant. 
+This methodology draws on approaches used previously in the USEEIO and CEDA-US models. 
+The Cornerstone team first reviewed and identified all the differences between reference USEEIO and CEDA-US models and systematically assessed the differences both theoretically and quantitatively, as relevant. 
 That work is captured in a discussions and related scripts found in the [cornerstone-data/methods](https://github.com/cornerstone-data/methods) repository.
  References to those discussions are provided herein.
 
 This version of the model provides matrices and resulting emission factors with currency units in 2023 USD in producer price.
 
-The description of the methodology is split into three sections: (1) the economic data and steps used to forming the basis economic input-output table (IOT) matrices and associated economic datasets;
+The description of the methodology is split into three sections:
+(1) the economic data and steps used to forming the basic economic input-output table (IOT) matrices and associated economic datasets;
 (2) the greenhouse gas emissions (GHG) model and the approach used to estimate industry GHG totals and indicators used to convert them into CO2 equivalents; and (3) the integration of the economic and environmental data to form model result matrices of GHG emissions per dollar. 
 
 Additional steps in the integration of these U.S. data into the global model are not described here.
 
 # Data Sources and Procedures for Construction of IOTs
 
-Data are requiring for building the economic IOTs as well as for later use in linking the environmental data to build the EEIO extensions.
+Data are required for building the economic IOTs as well as for later use in linking the environmental data to build the EEIO extensions.
 
 ## Data Inputs to IOTs
 The data sources used are listed in [Table 1](#table-1.-economic-data-sources).
@@ -52,7 +53,7 @@ The benchmark Make and Use matrices from the BEA, provided at 5 year intervals, 
 The 2017 tables are the most recent official release.
 These tables are prepared in producer and purchaser price, as well as "Before Redefinitions" (BR) and "After Redefinitions" (AR).
 We use the producer price version as was done previously both for USEEIO and CEDA. 
-The purchaser price version provide less transparency in the input requirements because for each value in the Use table for an industries' use of a commodity includes not just the value of the commodity used but also the value of added wholesale, retail and transportation costs.
+The purchaser price version provides less transparency in the input requirements because for each value in the Use table for an industries' use of a commodity includes not just the value of the commodity used but also the value of added wholesale, retail and transportation costs.
 
 We use the AR version of the Make and Use tables, which were previously used in CEDA. 
 See [discussion #3](https://github.com/cornerstone-data/methods/discussions/3) on the choice of AR tables.
@@ -74,7 +75,7 @@ The BEA Gross Output by Industry is the authoritative dataset on both annual gro
 The Import Matrix (AR) is an accompanying table to the selected Use table with values for uses of imported commodities by industries and final users.
 The Margins table contain data on cost of transportation, wholesale and retail to move each commodity to each user corresponding with the benchmark Use table.
 The final three sources listed in Table 1 are used for the waste sector disaggregation.
-The Biennial Report is a collection of has data on the generation, handling and ultimate disposition of wastes that are according the U.S. [Resource Conservation and Recovery Act (RCRA)](https://www.epa.gov/laws-regulations/summary-resource-conservation-and-recovery-act) declared as hazardous waste in the U.S. 
+The Biennial Report is a collection of data on the generation, handling and ultimate disposition of wastes that are according the U.S. [Resource Conservation and Recovery Act (RCRA)](https://www.epa.gov/laws-regulations/summary-resource-conservation-and-recovery-act) declared as hazardous waste in the U.S. 
 It includes data on specific waste generators, waste type generated, quantity generated, and disposition of the waste. 
 The EC1756BASIC is a set of summary statistics derived from the Economic Census of the Waste sector, reporting data such as costs, revenue, and number of establishments.
 All the uses of these tables are described below. 
@@ -143,22 +144,26 @@ Variables are defined in Table 3. Matrices and vectors are bolded (except for Gr
 | by              | subscript for base year                                                                |                       |    
 | **c**           | characterization factor vector                                                         | indicator x flow      |
 | c               | subscript for commodity                                                                |                       |    
-| d               | subscript for domestic                                                                 |                       |    
-| e               | vector of exports                                                                      | commodities           |    
+| d               | subscript for domestic or for detail level                                             |                       |    
+| **d**           | direct emissions vector                                                                | commodities           |    
+| **e**           | vector of exports                                                                      | commodities           |    
+| **E**           | total flows by industry matrix                                                         | flow x industry       |
 | $\chi$          | non-scrap output ratio vector                                                          | industry              |    
 | g               | subscript for government                                                               |                       |
 | h               | subscript for households                                                               |                       |
 | **i**           | vector of 1s                                                                           | varies                |
 | i               | subscript for industry                                                                 |                       |
+| **I**           | Identity matrix                                                                        | varies                |
 | **L**           | Leontief matrix                                                                        | commodity x commodity |
 | **M**           | direct + indirect flows matrix, aka multipliers                                        | flow x commodity      |
 | m or **m**      | subscript or vector for imports                                                        | commodities           |
-| **n**           | direct + indirect emissions vector, aka emission factors                                        | GHGs in kg CO2e x commodity      |
+| **n**           | direct + indirect emissions vector, aka emission factors                               | commodities           |
 | **O**           | correspondence matrix                                                                  | varies                |
 | **q** or **Q**  | commodity output vector or matrix                                                      | commodities or commodities x year          |
 | $\Pi$           | Price index matrix                                                                     | industry x year       |
 | **R**           | Redefinitions co-product ratios matrix                                                 | industry x commodity  |
 | **s**           | scrap production vector                                                                | industries            |
+| s               | subscript for summary level                                                            | industries            |
 | $\rho$          | inflation adjustment factor vector                                                     | industries            |
 | **T**           | Commodity mix matrix                                                                   | commodity x industry  |
 | sy              | subscript for summary IO table year                                                    |                       |
@@ -171,11 +176,12 @@ Variables are defined in Table 3. Matrices and vectors are bolded (except for Gr
 | **y**           | total final demand vector                                                              | commodities           |
 | ^               | symbol that indicates diagonalized form (matrix form) of a vector                      |                       |
 | '               | symbol that indicates the transposition of a matrix of vector                          |                       |
+| "               | symbol that indicates temporaru version of an object                                   |                       |
 | -               | bar over to represent a variable before transformation into CS conventions             |                       |
 | \circ           | cell-by-cell multiplication (Haddard product)                                          |                       |
 
 We start with the Make table from BEA, $\bar{V}$, and the Use table from BEA, $\bar{U}$.  
-To combine the government industries we use an industry x industry correspondence matrices, $O_i$, and a commodity by commodity correspondence matrix, $O_c$, to aggregate the sector in the Make (the rows) and Use. 
+To combine the government industries we use an industry x industry correspondence matrices, $O_i$, and a commodity-by-commodity correspondence matrix, $O_c$, to aggregate the sector in the Make (the rows) and Use. 
 In these correspondence matrices the CS sectors are on the rows and the BEA sectors on the columns. 
 This removes the rows and columns of special accounting industries and commodities from the matrices, and aggregates the government utilities. 
 Note that these correspondence matrices do not account for the additions of the waste sectors.
@@ -189,7 +195,7 @@ Following this initial mapping to the CS schema, the _Waste and Remediation Serv
  The new waste industries uses of non-waste commodities are estimated based on the detailed expenses from the SAS of the waste industries.
  The uses of the new waste commodities by non-waste industries was estimated using the Economic Census data.
  In the Make table, we assume that each new waste industry only produces its primary waste commodity.
- Further details on this disaggregation procedure can be found in the the Disaggregation of the waste and remediation services sector section of the [USEEIO v2 documentation](https://doi.org/10.1038/s41597-022-01293-7).
+ Further details on this disaggregation procedure can be found in the Disaggregation of the waste and remediation services sector section of the [USEEIO v2 documentation](https://doi.org/10.1038/s41597-022-01293-7).
 
 The total commodity and industry output, $q$ and $x$, is derived from the Make table, where $q$ is the columns sums and $x$ is the row sums.
 Although the commodity, _Scrap_, is not part of the final sector schema, it does need to be included in order to adjust the IOT.  
@@ -207,7 +213,7 @@ This vector is used to modify the commodity output normalized form of the Make m
 
 $$ W = \hat{\chi}^{-1} V\hat{q}^{-1} $$  
 
-The Use table is normalized by industry output and then post-multiplied by $W$ to get $A$ in commodity by commodity format.
+The Use table is normalized by industry output and then post-multiplied by $W$ to get $A$ in commodity-by-commodity format.
 This method for creating the $A$ matrix is based on the _industry-technology_ assumption, wherein the manufacture of the primary and any secondary commodities by an industry uses the same production requirements, and the commodity requirements are based therefore on the mix of industries that produce that commodity, weighted by their relative share of total commodity output. See [Input Output Analysis by R. Miller and P. Blair 2022](https://doi.org/10.1017/9781108676212).
 
 $$ A = U\hat{x}^{-1}W $$
@@ -222,7 +228,7 @@ This has to be conformed to the CS model schema through an aggregation matrix.
 
 $$ U_m = O_c \bar{U_m} O_i' $$
 
-Then we subtracting it from from the Use matrix to estimate a domestic Use table, $U_d$.
+Then we subtract it from from the Use matrix to estimate a domestic Use table, $U_d$.
 
 $$ U_d = U - U_m $$
 
@@ -278,7 +284,7 @@ The new $A_{ty}$ is used for further model creation as described below.
 ## Industry and Commodity Output for Non-IOT years
 
 The industry and commodity gross output are also estimated for non-IOT years. 
-The BEA provides a time-series of industry output that reflects output before redefinitions, \{bar}x.
+The BEA provides a time-series of industry output that reflects output before redefinitions, $\bar{x}$.
 However, during redefinitions procedure some of industry output, reflecting co-production, is reallocated to the primary industry.
 We estimate this reallocation and thus non-IOT years using the following steps.
 
@@ -304,7 +310,7 @@ Then the rows are summed and subtracted which represented removal of the co-prod
 
 $$ x_{ty} = \bar{x_{ty}} - (V^*_y  i) $$
 
-The the columns are summed to add the new redefined co-product output to the primary industry
+The columns are summed to add the new redefined co-product output to the primary industry.
 
 $$ x_{ty} = x_{ty} + (i V^*_y) $$
 
@@ -420,12 +426,12 @@ The Census of Agriculture (CoA) is the most extensive national survey of agricul
 The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION", "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", etc. as the measures available per crop type vary.
 
 The approach for building the GHG emissions model generally follows from that described in [Young et al.](http://doi.org/10.1016/j.dib.2024.110173) with some minor updates.
-The USGS Mineral Yearbook is dropped as an attribution source as emissions from lead production do not require attribution; primary lead production has not occured in the U.S. for many years (see discussion [#67](https://github.com/cornerstone-data/methods/discussions/67)).
-Data from EIA MECS are udpated to 2022 to better align with the temporal scope of the emissions data (see discussion [#68](https://github.com/cornerstone-data/methods/discussions/68)).
+The USGS Mineral Yearbook is dropped as an attribution source as emissions from lead production do not require attribution; primary lead production has not occurred in the U.S. for many years (see discussion [#67](https://github.com/cornerstone-data/methods/discussions/67)).
+Data from EIA MECS are updated to 2022 to better align with the temporal scope of the emissions data (see discussion [#68](https://github.com/cornerstone-data/methods/discussions/68)).
 Additional adjustments are performed to better align emissions to the target schema, e.g., in transportation (discussion [#39](https://github.com/cornerstone-data/methods/discussions/39)), natural gas (discussion [#34](https://github.com/cornerstone-data/methods/discussions/34)), and electricity (discussion [#33](https://github.com/cornerstone-data/methods/discussions/33)).
-Finally, the emissions attribution modeling in FLOWSA [Birney et al. 2022](http://doi.org/10.1016/j.dib.2024.110173) which can be aggreagated to the necssary [IOT sector schema](#selected-iot-schema).
+Finally, the emissions attribution modeling in FLOWSA [Birney et al. 2022](http://doi.org/10.1016/j.dib.2024.110173) which can be aggregated to the necssary [IOT sector schema](#selected-iot-schema).
 However to support cleaner aggregations where NAICS and the IOT schema do not align, a hybrid BEA schema is introduced into the emissions modeling, see discussion [#47](https://github.com/cornerstone-data/methods/discussions/47).
-In particular, new NAICS-like sector codes are incorporated for the Constrution (23*) and Government (92*) sectors in place of the appropriate NAICS.
+In particular, new NAICS-like sector codes are incorporated for the Construction (23*) and Government (92*) sectors in place of the appropriate NAICS.
 
 
 ### Table 6. MECS Tables Used
@@ -468,7 +474,7 @@ We also refer to it as a flow coefficient matrix.
 
 The resulting coefficients from these calculations can be interpreted as a measure of the environmental intensity of a sector in the year the environmental data are reported.
 
-This approach to to prepare the $B$ matrix is the same as that used in USEEIO v2 without the price adjustment, as $B$ is already in units of flow per target year $ty$ dollar.
+This approach to prepare the $B$ matrix is the same as that used in USEEIO v2 without the price adjustment, as $B$ is already in units of flow per target year $ty$ dollar.
 
 A discussion of this approach is found in [#16](https://github.com/cornerstone-data/methods/discussions/16).
 
