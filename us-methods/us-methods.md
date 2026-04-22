@@ -418,11 +418,11 @@ Data used (Table 6) includes fuel use and nonfuel use of energy sources by indus
 The Census of Agriculture (CoA) is the most extensive national survey of agriculture and forestry. From the CoA, various data are used for area of land for general agriculture and specific crop types, both by crop name and NAICS code.
 The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION", "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", etc. as the measures available per crop type vary.
 
-The approach for building the GHG emissions model generally follows from that described in [cite Young] with some minor updates.
+The approach for building the GHG emissions model generally follows from that described in [Young et al.](http://doi.org/10.1016/j.dib.2024.110173) with some minor updates.
 The USGS Mineral Yearbook is dropped as an attribution source as emissions from lead production do not require attribution; primary lead production has not occured in the U.S. for many years (see discussion [#67](https://github.com/cornerstone-data/methods/discussions/67)).
 Data from EIA MECS are udpated to 2022 to better align with the temporal scope of the emissions data (see discussion [#68](https://github.com/cornerstone-data/methods/discussions/68)).
 Additional adjustments are performed to better align emissions to the target schema, e.g., in transportation (discussion [#39](https://github.com/cornerstone-data/methods/discussions/39)), natural gas (discussion [#34](https://github.com/cornerstone-data/methods/discussions/34)), and electricity (discussion [#33](https://github.com/cornerstone-data/methods/discussions/33)).
-Finally, the emissions attribution modeling in FLOWSA is built primarily on a NAICS schema [cite Birney] which can be aggreagated to the necssary [IOT sector schema](#selected-iot-schema).
+Finally, the emissions attribution modeling in FLOWSA [Birney et al. 2022](http://doi.org/10.1016/j.dib.2024.110173) which can be aggreagated to the necssary [IOT sector schema](#selected-iot-schema).
 However to support cleaner aggregations where NAICS and the IOT schema do not align, a hybrid BEA schema is introduced into the emissions modeling, see discussion [#47](https://github.com/cornerstone-data/methods/discussions/47).
 In particular, new NAICS-like sector codes are incorporated for the Constrution (23*) and Government (92*) sectors in place of the appropriate NAICS.
 
