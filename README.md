@@ -7,6 +7,8 @@ Status: [*Published* on zenodo](https://doi.org/10.5281/zenodo.18895076)
 
 [Provide feedback or comments](https://github.com/orgs/cornerstone-data/discussions/4)
    
-2. [Methodology for Cornerstone U.S. National Model](../../blob/internal-review-draft-US-methods/us-methods/us-methods.md).
+2. [Methodology for Cornerstone U.S. Model v0.2: Cornerstone Working Paper](us-methods/us-methods.md).
 
-Status: *Under internal review*
+Status: *Published here with anticipation of revision for future U.S. model versions*
+
+[Provide feedback or comments](https://github.com/orgs/cornerstone-data/discussions/6)
