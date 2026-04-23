@@ -464,7 +464,7 @@ The original relation between the environmental data in the form of national tot
 $$ B_{i} = E_{i}\hat{X_{ty}}^{-1} $$ 
 
 where $E_i$ is a emission x industry matrix of national totals of each flow by industry sector in emission year, and $x$ is a vector of gross output by industry given in dollars. 
-The industries in the $E$ columns match the industries in $x$ and the year of the data are the same.
+The industries in the $E$ columns match the industries in $x$ and the year of the data are the same, and therefore an inflation adjustment is not required.
 
 The final $B$ matrix is prepared using the following equation:
 
