@@ -1,5 +1,6 @@
 
 # Methodology for Cornerstone U.S. Model v0.2
+# Cornerstone Working Paper
 
 Wesley Ingwersen, [WesIngwersen](https://github.com/orgs/cornerstone-data/people/WesIngwersen)
 
