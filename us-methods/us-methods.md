@@ -363,7 +363,7 @@ Table 4 has a list of the data sources used in the emissions model.
 
 | Name                                                       | Creator | Sources | DataYears |
 |:-----------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------|:----------|
-| GHG Inventory | EPA | [Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks) | 2023 |
+| GHG Inventory | EPA | [Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.edf.org/freedom-information-act-documents-epas-greenhouse-gas-inventory) | 2023 |
 | COA Cropland   | USDA | [Department of Agriculture Census of Agriculture](https://www.nass.usda.gov/AgCensus/) | 2022 |
 | MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey](https://www.eia.gov/consumption/manufacturing/) | 2018 |
 
