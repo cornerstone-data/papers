@@ -143,7 +143,6 @@ Variables are defined in Table 3. Matrices and vectors are bolded (except for Gr
 | **B**           | direct environmental flows per commodity output matrix                                 | flow x commodity      |
 | b               | subscript for balance (national accounting)                                            |                       |    
 | by              | subscript for base year                                                                |                       |    
-<!--| **c**           | characterization factor vector                                                         | indicator x flow      | -->
 | c               | subscript for commodity                                                                |                       |    
 | d               | subscript for domestic or for detail level                                             |                       |    
 | **d**           | direct emissions vector                                                                | commodities           |    
