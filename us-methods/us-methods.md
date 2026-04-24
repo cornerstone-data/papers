@@ -143,7 +143,7 @@ Variables are defined in Table 3. Matrices and vectors are bolded (except for Gr
 | **B**           | direct environmental flows per commodity output matrix                                 | flow x commodity      |
 | b               | subscript for balance (national accounting)                                            |                       |    
 | by              | subscript for base year                                                                |                       |    
-| **c**           | characterization factor vector                                                         | indicator x flow      |
+<!--| **c**           | characterization factor vector                                                         | indicator x flow      | -->
 | c               | subscript for commodity                                                                |                       |    
 | d               | subscript for domestic or for detail level                                             |                       |    
 | **d**           | direct emissions vector                                                                | commodities           |    
@@ -352,7 +352,7 @@ $$ y_{ty} = y \circ \rho^{-1} $$
 
 # GHG Emissions Model and Indicators
 
-The GHG emissions model is largely based on previously [GHG attribution models led by EPA](http://doi.org/10.1016/j.dib.2024.110173) using the [FLOWSA python package](http://doi.org/10.1016/j.dib.2024.110173). 
+The GHG emissions model is largely based on previously [GHG attribution models led by EPA](http://doi.org/10.1016/j.dib.2024.110173) using the [FLOWSA python package](https://doi.org/10.3390/app12115742). 
 
 Data are primarily for 2023 U.S. GHG emissions.
 
@@ -364,9 +364,9 @@ Table 4 has a list of the data sources used in the emissions model.
 
 | Name                                                       | Creator | Sources | DataYears |
 |:-----------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------|:----------|
-| GHG Inventory | EPA | [ Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks) | 2023 |
+| GHG Inventory | EPA | [Environmental Protection Agency Inventory of U.S. Greenhouse Gas Emissions and Sinks](https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks) | 2023 |
 | COA Cropland   | USDA | [Department of Agriculture Census of Agriculture](https://www.nass.usda.gov/AgCensus/) | 2022 |
-| MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey](https://www.eia.gov/consumption/manufacturing/) | 2022 |
+| MECS  | EIA | [Energy Information Administration Manufacturing Energy Consumption Survey](https://www.eia.gov/consumption/manufacturing/) | 2018 |
 
 The US GHG Inventory (GHGI) is an authoritative estimate of national GHG emissions and sinks for the U.S. that includes estimates of emissions by broad sectors as specific activities. 
 
@@ -427,11 +427,10 @@ Data used (Table 6) includes fuel use and nonfuel use of energy sources by indus
 The Census of Agriculture (CoA) is the most extensive national survey of agriculture and forestry. From the CoA, various data are used for area of land for general agriculture and specific crop types, both by crop name and NAICS code.
 The measures used include "AREA", "AREA IRRIGATED", "AREA HARVESTED", "AREA HARVESTED, IRRIGATED", "AREA IN PRODUCTION, IRRIGATED", "AREA IN PRODUCTION", "AREA BEARING AND NON-BEARING", "AREA BEARING & NON-BEARING, IRRIGATED", "AREA GROWN","AREA GROWN, IRRIGATED", "FARM OPERATIONS", etc. as the measures available per crop type vary.
 
-The approach for building the GHG emissions model generally follows from that described in [Young et al.](http://doi.org/10.1016/j.dib.2024.110173) with some minor updates.
+The approach for building the GHG emissions model generally follows from that described in [Young et al. (2024)](http://doi.org/10.1016/j.dib.2024.110173) with some minor updates.
 The USGS Mineral Yearbook is dropped as an attribution source as emissions from lead production do not require attribution; primary lead production has not occurred in the U.S. for many years (see discussion [#67](https://github.com/cornerstone-data/methods/discussions/67)).
-Data from EIA MECS are updated to 2022 to better align with the temporal scope of the emissions data (see discussion [#68](https://github.com/cornerstone-data/methods/discussions/68)).
 Additional adjustments are performed to better align emissions to the target schema, e.g., in transportation (discussion [#39](https://github.com/cornerstone-data/methods/discussions/39)), natural gas (discussion [#34](https://github.com/cornerstone-data/methods/discussions/34)), and electricity (discussion [#33](https://github.com/cornerstone-data/methods/discussions/33)).
-Finally, the emissions attribution modeling in FLOWSA [Birney et al. 2022](http://doi.org/10.1016/j.dib.2024.110173) which can be aggregated to the necssary [IOT sector schema](#selected-iot-schema).
+Finally, the emissions attribution modeling in FLOWSA [Birney et al. (2022)](https://doi.org/10.3390/app12115742) which can be aggregated to the necssary [IOT sector schema](#selected-iot-schema).
 However to support cleaner aggregations where NAICS and the IOT schema do not align, a hybrid BEA schema is introduced into the emissions modeling, see discussion [#47](https://github.com/cornerstone-data/methods/discussions/47).
 In particular, new NAICS-like sector codes are incorporated for the Construction (23*) and Government (92*) sectors in place of the appropriate NAICS.
 
@@ -440,8 +439,8 @@ In particular, new NAICS-like sector codes are incorporated for the Construction
 
 No. | Name
 -- | --
-2-2 | [Energy Used as a Nonfuel (Feedstock)](https://www.eia.gov/consumption/manufacturing/data/2022/xls/Table2_2.xlsx)  By Manufacturing Industry and Region (trillion Btu)
-3-2 | [Energy Consumption as a Fuel](https://www.eia.gov/consumption/manufacturing/data/2022/xls/Table3_2.xlsx) By Manufacturing Industry and Region (trillion Btu)
+2-2 | [Energy Used as a Nonfuel (Feedstock)](https://www.eia.gov/consumption/manufacturing/data/2018/xls/Table2_2.xlsx)  By Manufacturing Industry and Region (trillion Btu)
+3-2 | [Energy Consumption as a Fuel](https://www.eia.gov/consumption/manufacturing/data/2018/xls/Table3_2.xlsx) By Manufacturing Industry and Region (trillion Btu)
 
 
 ## Global Warming Potential Indicator
@@ -451,7 +450,7 @@ These gases each have different potential to cause radiative forcing which is th
 Global warming potentials (GWPs) are factors that relate GHGs to the global warming potential they have over a given time frame by estimating this potential in kg of $CO_2$  equivalent ($CO_2$ e). 
 We use the most GWPs for a 100 yr time horizon from the IPCC 6th Assessment Report (AR6) that are matched to the FEDEFL flows from the [IPCC AR4, AR5, and AR6 20-, 100-, and 500-year GWPs](https://doi.org/10.23719/1529821) dataset. 
 These GWPs become the indicator used in the model.
-We conform these into a vector, $c$, of GWPs per gas.
+We conform these to generate $B$ in the form of emissions per gas in $CO_2$ e.
 
 # Creating the Environmentally-Extended IO model
 
